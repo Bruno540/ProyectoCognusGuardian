@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800');
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+@import '../node_modules/flatpickr/dist/flatpickr.min.css';
+
+input.form-control.asd {
+    background: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+#pad{
+    margin: 0;
+    padding: 0;
+}
+
+td{
+    vertical-align:middle !important
+}
+th{
+  vertical-align:middle !important
+}
+
+.text-blue{
+    color:#2962ff;
+}
+img{
+    object-fit: cover !important;
+}
+
+@media screen and (max-width: 640px) {
+    [data-th] {
+        padding: 2rem;
+        font-size: 125%;
+        border: 1px solid rgb(233,237,240) !important;
+    }
+    table#customDataTable tr{
+        padding-bottom: 2px;
+    }
+    table#customDataTable caption {
+        background-image: none;
+    }
+    table#customDataTable thead {
+      display: none;
+    }
+    table#customDataTable tbody td {
+      display: block;
+      padding: .6rem;
+    }
+    table#customDataTable tbody tr td:first-child {
+      margin-top: 20px !important;
+      border: 1px solid rgb(191,183,246);
+      background: rgb(219,215,245);
+      color: rgb(0, 0, 0);
+    }
+    table#customDataTable tbody tr td:first-child a {
+      color: rgb(0, 0, 0);
+    }
+    table#customDataTable tbody tr td:first-child:before {
+      color: rgb(0, 0, 0);
+    }
+    table#customDataTable tbody td:before {
+      content: attr(data-th);
+      font-weight: bold;
+      display: inline-block;
+      width: 10rem;
+      text-decoration: underline;
+    }
+    table#customDataTable tr th:last-child,
+    table#customDataTable tr td:last-child {
+      max-width: 100% !important;
+      min-width: 100px !important;
+      width: 100% !important;
+    }
+  }

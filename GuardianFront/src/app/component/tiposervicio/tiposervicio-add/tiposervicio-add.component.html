@@ -1,0 +1,12 @@
+<div class="card-body">
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nombre">Nombre: </label>
+      <input type="text" class="form-control mt-1" id="nombre" name="nombre" placeholder="Ingrese un nombre" [(ngModel)]="form.nombre">
+    </div>
+    <br>
+    <button class="btn btn-primary" >Aceptar</button>
+  </form>
+</div>
+
+  

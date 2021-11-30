@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="card responsive-x1" style="opacity: 0.85;">
+      <div class="card-header">
+        <h2 *ngIf="!edificio" class="text-dark">Ubicaciones</h2>
+        <h2 *ngIf="edificio" class="text-dark">Ubicaciones - {{edificio.nombre }}</h2>
+      </div>
+      <div class="card-body">
+        <div class="row pt-3">
+          <div class="col-9" id="pad">
+            <!-- <a class="btn btn-primary" href="/ubicacionesabm"> Nueva <i class="bi bi-plus-lg"></i> </a> -->
+            <button type="button" class="btn btn-primary" *ngIf="tipo=='ADMIN'" data-bs-toggle="modal" data-bs-target="#altaModal">
+              Alta <i class="bi bi-door-open"></i>
+            </button>
+          </div>
+          <div class="col-3">
+            <form>
+              <div class="form-group float-right">
+                <input class="form-control ml-2" type="text" placeholder="Buscar" (keyup)="busqueda($event)"/>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="table-responsive-xl w-100">
+            <table class="table table-bordered">
+              <thead class="table-primary">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Descripción</th>
+                <th *ngIf="!edificio" scope="col">Edificio</th>
+                <th scope="col">Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let sala of ubicaciones">
+                <td >{{sala.id}}</td>
+                <td ><input type="text" class="form-control" [ngClass]="{'asd': editable == true}" id="descripcion" [disabled]="editable" (keyup.enter)="onEnter($event)" (blur)="actualizarDescripcion(sala, $event)" value="{{sala.descripcion}}"></td>
+                <td *ngIf="!edificio">{{sala!.Edificio?.nombre!}}</td>
+                <td width="12" >
+                  <div class="btn-group" role="group">
+                    <button *ngIf="tipo=='ADMIN'" class="btn btn-icon btn-danger mx-1"  (click)="eliminar(sala.idedificio, sala.id)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="bi bi-trash-fill"></i></button>
+                    <button *ngIf="tipo=='ADMIN'" class="btn btn-icon btn-warning mx-1" (click)="editOn()" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="bi bi-pencil-square"></i></button>
+                    <a href="/component/perfiledificio?idedificio={{sala.idedificio}}" class="btn btn-icon btn-primary mx-1" data-toggle="tooltip" data-placement="top" title="Ver edificio"><i class="bi bi-building"></i></a>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex flex-wrap justify-content-between">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()" size="sm" [boundaryLinks]="true">
+          </ngb-pagination>
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="20">20</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="altaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Alta ubicación</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <app-ubicacion-add></app-ubicacion-add>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="refresh()">Cerrar</button>
+        </div>
+        </div>
+    </div>
+  </div>
+  
+  

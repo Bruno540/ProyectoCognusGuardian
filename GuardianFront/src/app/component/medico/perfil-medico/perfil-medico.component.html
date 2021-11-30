@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="main-body">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="component/index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="component/medicos">Medicos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{medico?.Usuario.nombre}} {{medico?.Usuario.apellido}}</li>
+          </ol>
+        </nav>
+        <!-- /Breadcrumb -->
+        <div class="row gutters-sm">
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img *ngIf="medico" [src]="url +'/' + medico?.rutaFoto" alt="Admin" class="rounded-circle" width="200" height="200">
+                  <div class="mt-3">
+                    <h4> {{medico?.Usuario.nombre}} {{medico?.Usuario.apellido}}</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Datos personales</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Especialidades</button>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Nombre: </h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{medico?.Usuario.nombre}}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Apellido</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{medico?.Usuario.apellido}}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Fecha de nacimiento</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{medico?.fecha_nac | date:'dd/MM/yyyy'}}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Direccion</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{medico?.direccion}}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Telefono</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{medico?.Usuario.telefono}}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-12">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="card mt-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="table-responsive-xl">
+                        <table class="table table-bordered ">
+                            <thead class="table-primary">
+                            <tr>
+                                <th scope="col">Especialidad</th>
+                                <th scope="col" *ngIf="tipo==='ADMIN'">Accion</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let esp of medico?.Especialidads">
+                                <td>{{esp.nombre}}</td>
+                                <td *ngIf="tipo==='ADMIN'"><button class="btn btn-danger" (click)="eliminarEspecialidad(esp.id)"><i class="bi bi-trash-fill"></i></button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#altaModal" *ngIf="tipo==='ADMIN'">
+                      Agregar
+                    </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+   <!-- Modal -->
+  <div class="modal fade" id="altaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Agregar especialidades</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-especialidad-medico [medicoId]="medico?.Usuario.id"></app-especialidad-medico>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="obtenerMedico(medico?.id)"  class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

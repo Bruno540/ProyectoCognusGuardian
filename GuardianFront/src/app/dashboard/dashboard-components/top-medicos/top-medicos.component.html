@@ -1,0 +1,64 @@
+<div class="card h-100">
+    <div class="card-body">
+        <!-- title -->
+        <div class="d-md-flex align-items-center">
+            <div>
+                <h4 class="card-title">Top Médicos por hora</h4>
+                <h5 class="card-subtitle">Médicos con mayor cantidad de horas completadas</h5>
+            </div>
+            <div class="ml-auto">
+                <div class="dl">
+                    <div class="row pt-3">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col-5">
+                              <label for="fechainicio">Fecha inicio</label>
+                            </div>
+                            <div class="col-5">
+                              <label for="fechafin">Fecha fin</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-5">
+                              <input type="date" [(ngModel)]="fechainicio"  class="form-control mt-1" id="fechainicio" name="fechainicio" >
+                            </div>
+                            <div class="col-5">
+                              <input type="date" [(ngModel)]="fechafin"  class="form-control mt-1" id="fechafin" name="fechafin" >
+                            </div>
+                            <div class="col-2 align-self-end">
+                              <button class="btn btn-primary" (click)="obtenerMedicos()" id="filter">Filtrar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive mt-3">
+            <table class="table v-middle">
+                <thead>
+                    <tr class="bg-light">
+                        <th class="border-top-0">Nombre</th>
+                        <th class="border-top-0">Apellido</th>
+                        <th class="border-top-0">Correo electronico</th>
+                        <th class="border-top-0">Horas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let med of medicos'>
+                        <td>
+                            <a> {{med.nombre}}</a>
+                        </td>
+                        <td>
+                            <a> {{med.apellido}}</a>
+                        </td>
+                        <td>
+                            <a> {{med.email}}</a>
+                        </td>
+                        <td>{{med.total}}</td>
+                    </tr>              
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

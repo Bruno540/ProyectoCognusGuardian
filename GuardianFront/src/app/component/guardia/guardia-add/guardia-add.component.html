@@ -1,0 +1,39 @@
+<div class="card-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="descripcion">Descripción: </label>
+            <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese un descripción"
+                [(ngModel)]="form.descripcion">
+        </div>
+        <div class="form-group">
+            <label for="asignacion">Metodo de asignación:</label>
+            <select [(ngModel)]="form.met_asignacion" name="asignacion" id="asignacion" required class="custom-select mt-1"
+                    aria-label="Default select example" >
+            <option>LISTA</option>
+            <option>DIFUSION</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="duracion">Duración: </label>
+            <input type="number" max=8 min=1 class="form-control mt-1" id="duracion" name="duracion"
+                placeholder="Ingrese la duracion" [(ngModel)]="form.duracion">
+        </div>
+        <div class="form-group">
+            <label for="fechainicio">Fecha de inicio: </label>
+            <input type="datetime-local" min="{{date | date:'yyyy-MM-dd'}}" class="form-control" id="fechainicio" name="fecha"
+              (change)="updateDescription()"  [(ngModel)]="form.fechainicio">
+        </div>
+        <br>
+        <h4>Servicio seleccionado: </h4><br>
+        <div *ngIf="local==true">
+            <p class="text-decoration-underline">Edificio:</p><p>{{servicio.Local.Edificio.nombre}}</p>
+            <p class="text-decoration-underline">Ubicación:</p><p>{{servicio.Local.Ubicacion.descripcion}}</p>
+        </div>
+        <div *ngIf="local==false">
+            <p class="text-decoration-underline">Zona:</p><p>{{servicio.Domicilio.Zona.localidad}}</p>
+            <p class="text-decoration-underline">Departamento:</p><p>{{servicio.Domicilio.Zona.departamento}}</p>
+        </div>
+        <br> 
+        <button class="btn btn-primary">Aceptar</button>
+    </form>
+</div>

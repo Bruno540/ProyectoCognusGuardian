@@ -1,0 +1,25 @@
+<div class="modal-body row">
+  <div class="col-md-6">
+    <div class="text-center">
+      <div class="form-signin">
+        <form #f="ngForm" (ngSubmit)="onSubmit()">
+          <img class="mb-4" src="assets/images/LogoGuardianG.png" alt="" width="150" height="150">
+          <h1 class="h3 mb-3 font-weight-normal">Inicie sesión</h1>
+          <label for="inputEmail" class="sr-only">Correo electrónico</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Correo electrónico" required [(ngModel)]="form.email" autofocus>
+          <label for="inputPassword" class="sr-only">Contraseña</label>
+          <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Contraseña" [(ngModel)]="form.password" required>
+          <button class="btn btn-lg btn-primary btn-block">Iniciar Sesión</button>
+          <label class="mt-2">
+            <a href="component/forgotpassword">Has olvidado tu contraseña?</a>
+          </label>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6  imagen">
+  </div>
+</div>
+
+  
+  

@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+.imagen {
+  background-image: url(/assets/images/medicos.png) !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 10%;
+}
+
+// #sect1{
+//     background-image: url(https://previews.123rf.com/images/stockasso/stockasso1802/stockasso180200118/96095024-young-smiling-secretary-working-at-office-desk-and-stacks-of-paperwork.jpg) !important;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     height: 100%;
+// }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.border-blue{
+  border-color: rgb(41, 98, 255)!important;
+}
+
+.card-header{
+  border-color: rgb(41, 98, 255)!important;
+}
+
+.btn-primary{
+  background-color: rgb(41, 98, 255)!important;
+  border-color: rgb(41, 98, 255)!important;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

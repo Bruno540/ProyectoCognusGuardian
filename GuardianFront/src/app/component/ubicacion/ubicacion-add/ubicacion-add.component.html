@@ -1,0 +1,19 @@
+
+<div class="card-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+        <label for="descripcion">Descripción: </label>
+        <input type="text" class="form-control mt-1" id="descripcion" name="descripcion" placeholder="Ingrese una descripcion" [(ngModel)]="form.descripcion">
+        </div>
+        <div class="form-group">
+        <label for="edificio">Edificio:</label>
+        <select [(ngModel)]="form.idedificio" name="edificio" id="edificio" required class="custom-select mt-1" aria-label="Default select example" >
+            <option *ngFor="let edificio of edificios" [value]="edificio.id">
+            {{edificio.nombre}}
+            </option>
+        </select>
+        </div>
+        <br>
+        <button class="btn btn-primary" >Aceptar</button>
+    </form>
+</div>

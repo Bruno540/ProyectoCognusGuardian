@@ -1,0 +1,60 @@
+
+<div class="card-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="tipo">Tipo de servicio:</label>
+            <select [(ngModel)]="form.idtipo" name="tipo" id="tipo" required class="custom-select mt-1"
+                    aria-label="Default select example">
+                <option *ngFor="let tipo of tipos" [value]="tipo.id">
+                {{tipo.nombre}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cant_medicos">Médicos necesarios:</label>
+            <div class="tableFixHead" id="cant_medicos">
+                <table class="table table-bordered w-100">
+                    <thead>
+                        <tr>
+                            <th>Especialidad</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let esp of especialidades">
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" [(ngModel)]="esp.seleccionada" name="seleccionada" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{esp.nombre}}
+                                    </label>
+                                </div>
+                            </td>
+                            <td><input type="number" [(ngModel)]="esp.cantidad" name="cantidad"  class="form-control"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="edificio">Edificio:</label>
+            <select [(ngModel)]="form.idedificio" name="edificio" id="edificio" required class="custom-select mt-1"
+                aria-label="Default select example" (change)="onClick()">
+                <option *ngFor="let edificio of edificios" [value]="edificio.id">
+                    {{edificio.nombre}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ubicacion">Ubicaciones:</label>
+            <select [(ngModel)]="form.idubicacion" name="ubicacion" #ubicacion required class="custom-select mt-1"
+                aria-label="Default select example">
+                <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
+                    {{ubicacion.descripcion}}
+                </option>
+            </select>
+        </div>
+        <br>
+        <button class="btn btn-primary">Aceptar</button>
+    </form>
+</div>

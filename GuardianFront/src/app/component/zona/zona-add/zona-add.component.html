@@ -1,0 +1,20 @@
+<div class="card-body">
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nombre">País: </label>
+      <input type="text" class="form-control mt-1" id="nombre" name="nombre" placeholder="Ingrese un paìs"
+        [(ngModel)]="form.pais" />
+    </div>
+    <div class="form-group">
+      <label for="nombre">Departamento: </label>
+      <input type="text" class="form-control mt-1" id="nombre" name="nombre" placeholder="Ingrese un departamento"
+        [(ngModel)]="form.departamento" />
+    </div>
+    <div class="form-group">
+      <label for="nombre">Localidad: </label>
+      <input type="text" class="form-control mt-1" id="nombre" name="nombre" placeholder="Ingrese una localidad"
+        [(ngModel)]="form.localidad" />
+    </div>
+    <button class="btn btn-primary">Aceptar</button>
+  </form>
+</div>

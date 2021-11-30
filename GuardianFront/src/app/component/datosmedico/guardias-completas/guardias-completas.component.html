@@ -1,0 +1,119 @@
+<div class="container p-3">
+  <div class="card responsive-x1" style="opacity: 0.85">
+    <div class="card-header">
+      <h2 class="text-dark">Guardias</h2>
+    </div>
+    <div class="card-body">
+      <div class="row pt-3">
+        <div class="col-9" id="pad">
+          <a class="btn btn-primary" href="component/mispostulaciones">
+            Mis postulaciones <i class="bi bi-card-checklist"></i>
+          </a>
+        </div>
+        <div class="col-3">
+          <form>
+            <div class="form-group float-right">
+              <input
+                class="form-control ml-2"
+                type="text"
+                placeholder="Buscar"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row pt-3">
+        <div class="table-responsive-xl w-100">
+          <table class="table table-bordered" id="customDataTable">
+            <thead class="table-primary">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha final</th>
+                <th scope="col">Duración</th>
+                <th scope="col">Estado Guardia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let guardia of guardias">
+                <td data-th="Id:">{{ guardia.id }}</td>
+                <td data-th="Descripcion:">
+                  <p>{{ guardia.descripcion }}</p>
+                </td>
+                <td data-th="Fecha de inicio:">
+                  <p>{{ guardia.fechainicio | date: "dd/MM/yyyy - HH:mm" }}</p>
+                </td>
+                <td data-th="Fecha de fin:">
+                  <p>{{ guardia.fechafin | date: "dd/MM/yyyy - HH:mm" }}</p>
+                </td>
+                <td data-th="Duracion:">
+                  <p>{{ guardia.duracion }} horas</p>
+                </td>
+                <td data-th="Estado:">
+                  <p>{{ guardia.estado }}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="justify-content-between">
+          <div class="row">
+            <div class="col-lg-3">
+              <ngb-pagination
+                [collectionSize]="collectionSize"
+                [(page)]="page"
+                [pageSize]="pageSize"
+              >
+              </ngb-pagination>
+            </div>
+            <div class="col-lg-7">
+              <div class="row">
+                <div class="col-5">
+                  <input
+                    type="date"
+                    [(ngModel)]="fechainicio"
+                    class="form-control"
+                    id="fechainicio"
+                    name="fechainicio"
+                  />
+                </div>
+                <div class="col-5">
+                  <input
+                    type="date"
+                    [(ngModel)]="fechafin"
+                    class="form-control"
+                    id="fechafin"
+                    name="fechafin"
+                  />
+                </div>
+                <div class="col-lg-2">
+                  <button
+                    class="btn btn-primary"
+                    id="filter"
+                    (click)="getGuardiasCompletadas()"
+                  >
+                    Filtrar
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 p-0">
+              <select
+                class="custom-select form-group float-right"
+                style="width: auto"
+                [(ngModel)]="pageSize"
+              >
+                <option [ngValue]="2">2</option>
+                <option [ngValue]="4">4</option>
+                <option [ngValue]="6">6</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

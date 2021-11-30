@@ -1,0 +1,35 @@
+@media screen and (max-width: 640px) {
+    table#customDataTable caption {
+      background-image: none;
+    }
+    table#customDataTable thead {
+      display: none;
+    }
+    table#customDataTable tbody td {
+      display: block;
+      padding: .6rem;
+    }
+    table#customDataTable tbody tr td:first-child {
+      border: 1px solid rgb(191,183,246);
+      background: rgb(219,215,245);
+      color: rgb(0, 0, 0);
+    }
+    table#customDataTable tbody tr td:first-child a {
+      color: rgb(0, 0, 0);
+    }
+    table#customDataTable tbody tr td:first-child:before {
+      color: rgb(0, 0, 0);
+    }
+    table#customDataTable tbody td:before {
+      content: attr(data-th);
+      font-weight: bold;
+      display: inline-block;
+      width: 10rem;
+    }
+    table#customDataTable tr th:last-child,
+    table#customDataTable tr td:last-child {
+      max-width: 100% !important;
+      min-width: 100px !important;
+      width: 100% !important;
+    }
+  }

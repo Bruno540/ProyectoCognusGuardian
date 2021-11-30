@@ -1,0 +1,68 @@
+<div class="top mb-3">
+    <div class="card responsive-x1" style="opacity: 0.85;">
+        <div class="col-lg-6">
+            <div class="row">
+              <h4>Guardia Pendiente </h4>
+              <span class="dot yellow-dot"></span>
+              <h4>Guardia Publicada </h4>
+              <span class="dot blue-dot"></span>
+              <h4>Guardia Cerrada </h4>
+              <span class="dot red-dot"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                            (viewDateChange)="closeOpenMonthViewDay()">
+                            Anterior
+                        </div>
+                        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate"
+                            (viewDateChange)="closeOpenMonthViewDay()">
+                            Hoy
+                        </div>
+                        <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                            (viewDateChange)="closeOpenMonthViewDay()">
+                            Siguiente
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
+                </div>
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+                            [class.active]="view === CalendarView.Month">
+                            Mes
+                        </div>
+                        <div class="btn btn-primary" (click)="setView(CalendarView.Week)"
+                            [class.active]="view === CalendarView.Week">
+                            Semana
+                        </div>
+                        <div class="btn btn-primary" (click)="setView(CalendarView.Day)"
+                            [class.active]="view === CalendarView.Day">
+                            Día
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div [ngSwitch]="view">
+                <mwl-calendar-month-view [locale]="locale" *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+                    [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+                    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                </mwl-calendar-month-view>
+                <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [locale]="locale" [viewDate]="viewDate" [events]="events"
+                    [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+                    (eventTimesChanged)="eventTimesChanged($event)">
+                </mwl-calendar-week-view>
+                <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [locale]="locale" [viewDate]="viewDate" [events]="events"
+                    [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+                    (eventTimesChanged)="eventTimesChanged($event)">
+                </mwl-calendar-day-view>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="container-fluid">
+    <div class="card responsive-x1" style="opacity: 0.85;">
+        <div class="card-header">
+            <h2 class="text-dark">Servicios domiciliarios</h2>
+        </div>
+        <div class="card-body">
+            <div class="row pt-3">    
+                <div class="col-9" id="pad">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#altaModal">
+                        Alta <i class="bi bi-journal-medical"></i>
+                      </button>
+                </div>
+                <div class="col-3">
+                    <form>
+                        <div class="form-group float-right">
+                            <input class="form-control ml-2" type="text" placeholder="Buscar" [formControl]="filter"/>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="row pt-3">  
+                <div class="table-responsive-xl w-100">
+                    <table class="table table-bordered">
+                        <thead class="table-primary">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">País</th>
+                            <th scope="col">Departamento</th>
+                            <th scope="col">Localidad</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let servicio of serviciosFiltrados$ | async;">
+                            <td width="2%"><ngb-highlight [result]="servicio.id" [term]="filter.value"></ngb-highlight></td>
+                            <td width="30%"><ngb-highlight [result]="servicio.Zona.pais" [term]="filter.value"></ngb-highlight></td>
+                            <td width="30%"><ngb-highlight [result]="servicio.Zona.departamento" [term]="filter.value"></ngb-highlight></td>
+                            <td width="30%"><ngb-highlight [result]="servicio.Zona.localidad" [term]="filter.value"></ngb-highlight></td>
+                            <td width="8%"> 
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-icon btn-primary mx-1" (click)="verGuardias(servicio.id)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Ver guardias"><i class="bi bi-file-medical"></i></button>
+                                    <button class="btn btn-icon btn-danger mx-1" routerLinkActive="active" (click)="eliminar(servicio.id)" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="bi bi-trash-fill"></i></button>
+                                    <button class="btn btn-icon btn-success mx-1" (click)="verDetalles(servicio.id)" routerLinkActive="active"><i class="bi bi-info-circle" data-toggle="tooltip" data-placement="top" title="Detalles del servicio"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination  [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+                    </ngb-pagination>
+
+                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()">
+                        <option [ngValue]="5">5</option>
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="20">20</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="altaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Alta domiciliario</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <app-serviciodomicilio-add></app-serviciodomicilio-add>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="refresh()">Cerrar</button>
+        </div>
+        </div>
+    </div>
+</div>

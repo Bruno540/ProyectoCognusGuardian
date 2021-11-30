@@ -1,0 +1,42 @@
+
+<div class="card-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="cant_medicos">Médicos necesarios:</label>
+            <div class="tableFixHead" id="cant_medicos">
+                <table class="table table-bordered w-100">
+                    <thead>
+                        <tr>
+                            <th>Especialidad</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let esp of especialidades">
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" [(ngModel)]="esp.seleccionada" name="seleccionada" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{esp.nombre}}
+                                    </label>
+                                </div>
+                            </td>
+                            <td><input type="number" [(ngModel)]="esp.cantidad" name="cantidad"  class="form-control"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zona">Zona:</label>
+            <select [(ngModel)]="form.idzona" name="zona" id="zona" required class="custom-select mt-1"
+                aria-label="Default select example">
+                <option *ngFor="let zona of zonas" [value]="zona.id">
+                    {{zona.departamento}} {{zona.localidad}}
+                </option>
+            </select>
+        </div>
+        <br>
+        <button class="btn btn-primary">Aceptar</button>
+    </form>
+</div>

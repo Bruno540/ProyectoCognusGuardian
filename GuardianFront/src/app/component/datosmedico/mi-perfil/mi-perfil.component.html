@@ -1,0 +1,160 @@
+<div class="container">
+    <div class="main-body">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="component/index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{form.nombre}}
+                    {{form.apellido}}</li>
+            </ol>
+        </nav>
+        <!-- /Breadcrumb -->
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img [src]="url + '/' + form.rutaFoto" alt="Admin" class="rounded-circle"
+                                width="200" height="200">
+                            <div class="mt-3">
+                                <h4> {{form.nombre}} {{form.apellido}}</h4>
+                            </div>
+                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#altaModal">
+                                Cambiar contraseña 
+                              </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                            aria-selected="true">Datos personales</button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                            type="button" role="tab" aria-controls="nav-profile"
+                            aria-selected="false">Especialidades</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Nombre: </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" [ngClass]="{'asd': !editable}" id="nombre" [disabled]="!editable"  [(ngModel)]="form.nombre">
+                                
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Apellido</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" [ngClass]="{'asd': !editable}" id="apellido" [disabled]="!editable" [(ngModel)]="form.apellido">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Fecha de nacimiento</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="date" class="form-control"  [ngClass]="{'asd': !editable}" id="direccion" [disabled]="!editable" [(ngModel)]="form.fecha_nac">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Dirección</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" [ngClass]="{'asd': !editable}" id="direccion" [disabled]="!editable" [(ngModel)]="form.direccion">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Teléfono</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" [ngClass]="{'asd': !editable}" id="telefono" [disabled]="!editable" [(ngModel)]="form.telefono">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row" *ngIf="editable">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Foto</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                            </div>
+                                            <div class="custom-file">
+                                              <input type="file" class="custom-file-input" id="inputGroupFile01" (change)="selectFile($event)" aria-describedby="inputGroupFileAddon01">
+                                              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr *ngIf="editable">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-icon btn-primary mx-1" routerLinkActive="active" (click)="editOn()">Editar</button>
+                                        <button *ngIf="editable" class="btn btn-icon btn-success mx-1" routerLinkActive="active" (click)="actualizarMedico()">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="card mt-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="table-responsive-xl">
+                                        <table class="table table-bordered ">
+                                            <thead class="table-primary">
+                                                <tr>
+                                                    <th scope="col">Especialidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let esp of Especialidads">
+                                                    <td>{{esp.nombre}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="altaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Cambiar contraseña</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-passwordreset *ngIf="userComponent" [userComponent]=userComponent></app-passwordreset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cerrar</button>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,236 @@
+<header class="pb-3 mb-4 border-bottom mt-4">
+  <div class="row">
+    <div class="col-6">
+      <a class="d-flex align-items-center text-dark text-decoration-none">
+        <h3 class="fs-4">Asignación de guardias</h3>
+      </a>
+    </div>
+    <div class="col-lg-6" *ngIf="!guardia">
+      <div class="row">
+        <h4>Guardia Pendiente </h4>
+        <span class="dot yellow-dot"></span>
+        <h4>Guardia Publicada </h4>
+        <span class="dot blue-dot"></span>
+        <h4>Guardia Cerrada </h4>
+        <span class="dot red-dot"></span>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group float-right">
+        <button  *ngIf="guardia"  type="button" class="btn btn-secondary mr-1" (click)="refreshGuardia()">
+          <i class="bi bi-arrow-clockwise"></i>
+        </button>
+        <button  *ngIf="guardia"  type="button" class="btn btn-primary" (click)="reseteo()">
+          Calendario <i class="bi bi-calendar-check-fill"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3"  *ngIf="guardia">
+      <table class="table table-bordered bg-light h-100">
+        <thead class="table-primary">
+        <tr>
+          <th scope="col">Especialidad</th>
+          <th scope="col">Restantes</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let esp of cuposFaltantes" >
+            <td>
+                {{esp.nombre_especialidad}}
+            </td>
+            <td>
+              {{esp.restantes}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-3" *ngIf="guardia">
+      <table id="especialidad" class="table table-bordered bg-light h-100">
+        <thead class="table-primary">
+        <tr>
+          <th scope="col">Médicos</th>
+          <th scope="col">Especialidad</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let postulacion of medicospostulados" >
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="postulacion.seleccionado" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        {{postulacion.Medico.Usuario.nombre}}&nbsp;{{postulacion.Medico.Usuario.apellido}}
+                    </label>
+                </div>
+            </td>
+            <td>
+              {{postulacion.Especialidad.nombre}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-2 text-center align-self-center" *ngIf="guardia">
+      <div *ngIf="guardia && guardia!.estado ==='PUBLICADA'" class="btn-group text-center" role="group" aria-label="First group">
+        <button class="btn btn-md btn-success mr-1" (click)="open(mymodal)">Agregar</button>
+        <button class="btn btn-md btn-danger " (click)="cerrarGuardia()">Cerrar</button>
+      </div>
+    </div>
+
+    <div class="col-lg-4 text-center " *ngIf="guardia">
+      <div class="row">
+        <table class="table table-bordered bg-light h-100">
+          <thead class="table-primary">
+            <tr>
+              <th colspan="2">Información guardia</th>
+            </tr>
+          </thead>
+          <tr>
+            <th scope="col">Tipo</th>
+            <td >{{ servicio?.Local?.TipoServicio?.nombre ?? (!servicio?.Domicilio ? servicio?.Domicilio :"DOMICILIO") ?? 'Seleccione una guardia'}} </td>
+          </tr>
+          <tr>
+            <th scope="col">Ubicacion</th>
+            <td >{{servicio?.Domicilio?.Zona?.localidad ?? servicio?.Local?.Ubicacion?.descripcion ?? 'Seleccione una guardia'}} </td>
+          </tr>
+          <tr>
+            <th scope="col">Guardia</th>
+            <td >{{guardia?.id ?? 'Seleccione una guardia'}} </td>
+          </tr>
+          <tr>
+            <th scope="col">Inicio</th>
+            <td >{{(guardia?.fechainicio | date:'dd/MM/yyyy HH:mm') ?? 'Seleccione una guardia'}} </td>
+          </tr>
+          <tr>
+            <th scope="col">Fin</th>
+            <td >{{(guardia?.fechafin | date:'dd/MM/yyyy HH:mm') ?? 'Seleccione una guardia'}} </td>
+          </tr>
+          <tr>
+            <th scope="col">Estado</th>
+            <td >{{guardia?.estado ?? 'Seleccione una guardia'}} </td>
+          </tr>
+          <tr>
+            <th scope="col">Met. Asig.</th>
+            <td >{{guardia?.met_asignacion ?? 'Seleccione una guardia'}} </td>
+          </tr>
+          <tr>
+            <th scope="col">Duracion</th>
+            <td >{{guardia?.duracion ?? 'Seleccione una guardia'}} hs</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div class="col-lg-12" *ngIf="!guardia">
+      <div class="row justify-content-md-center">
+        <div class="col-md-4 text-center">
+          <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-between">
+        <div class="col-sm-4">
+          <div class="btn-group">
+            <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()">
+              Anterior
+            </div>
+            <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" 
+              (viewDateChange)="closeOpenMonthViewDay()">
+              Hoy
+            </div>
+            <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+              (viewDateChange)="closeOpenMonthViewDay()">
+              Siguiente
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="btn-group float-right">
+            <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+                [class.active]="view === CalendarView.Month">
+              Mes
+            </div>
+            <div class="btn btn-primary" (click)="setView(CalendarView.Week)"
+                [class.active]="view === CalendarView.Week">
+              Semana
+            </div>
+            <div class="btn btn-primary" (click)="setView(CalendarView.Day)"
+                [class.active]="view === CalendarView.Day">
+              Dia
+            </div>
+          </div>
+        </div>
+    </div>
+    <br />
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [locale]="locale" [viewDate]="viewDate" [events]="events"
+                              [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+                              (eventClicked)="selectedGuardia( $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [locale]="locale" [viewDate]="viewDate" [events]="events"
+                              [refresh]="refresh" (eventClicked)="selectedGuardia( $event.event)"
+                              (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [locale]="locale" [viewDate]="viewDate" [events]="events"
+                            [refresh]="refresh" (eventClicked)="selectedGuardia( $event.event)"
+                            (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-day-view>
+    </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12 mt-3" *ngIf="guardia">
+      <table class="table table-bordered bg-light h-100">
+        <thead class="table-primary">
+        <tr>
+          <th scope="col">Médicos asignados</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let medico of medicosasignados">
+          <td>{{medico.Usuario.nombre}}&nbsp;{{medico.Usuario.apellido}} </td>
+          <td><button *ngIf="guardia && guardia.estado !='CERRADA'" class="btn btn-outline-danger align-self-end" (click)="quitarAsignMedico(medico.id)"><i class="bi bi-person-dash-fill"></i></button><button class="btn btn-warning ml-1" *ngIf="medico.GuardiaMedico.estado==='LIBERACION'" data-toggle="tooltip" data-placement="top" title="Se ha solicitado la liberacion de la guardia"><i  class="bi bi-bell"></i></button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirmar asignacion de medicos</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-bordered h-100">
+      <thead class="table-primary">
+      <tr>
+        <th scope="col">Médicos asignados</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let medico of medicospostulados">
+        <td *ngIf="medico.seleccionado">{{medico.Medico.Usuario.nombre}}&nbsp;{{medico.Medico.Usuario.apellido}}  </td>
+      </tr>
+      </tbody>
+    </table>
+    <h3 *ngIf="selectedguardia">{{selectedguardia.title}}</h3>
+    <button type="button" class="btn btn-outline-success me-3" (click)=" modal.close(agregarMedicosGuardia())">Confirmar</button>
+    <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">Cancelar</button>
+  </div>
+</ng-template>

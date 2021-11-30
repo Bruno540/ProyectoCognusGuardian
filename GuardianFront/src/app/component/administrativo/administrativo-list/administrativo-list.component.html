@@ -1,0 +1,104 @@
+<div class="container-fluid">
+    <div class="card responsive-x1" style="opacity: 0.85;">
+      <div class="card-header">
+        <h2 class="text-dark">Administrativos</h2>
+      </div>
+      <div class="card-body">
+        <div class="row pt-3">
+          <div class="col-9" id="pad">
+            <button  *ngIf="tipo=='ADMIN'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#altaModal">
+              Alta <i class="bi bi-person-plus-fill"></i>
+            </button>
+            <button *ngIf="tipo=='ADMIN'" type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Alta masiva <i class="bi bi-people-fill"></i>
+            </button>
+          </div>
+          <div class="col-3">
+              <form>
+                <div class="form-group float-right">
+                  <input class="form-control ml-2" type="text" placeholder="Buscar" (keyup)="busqueda($event)"/>
+                </div>
+              </form>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="table-responsive-xl w-100">
+            <table class="table table-bordered">
+                <thead class="table-primary">
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Correo electrónico</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let usuario of usuarios">
+                    <td ><ngb-highlight [result]="usuario.id" [term]="filter.value"></ngb-highlight></td>
+                    <td ><ngb-highlight [result]="usuario.Usuario.email" [term]="filter.value"></ngb-highlight></td>
+                    <td ><input type="text" class="form-control" [ngClass]="{'asd': !usuario.editable}" id="nombre" [disabled]="!usuario.editable" (keyup.enter)="onEnter($event)" (blur)="actualizarAdmin(usuario)" [(ngModel)]="usuario.Usuario.nombre"></td>
+                    <td ><input type="text" class="form-control" [ngClass]="{'asd': !usuario.editable}" id="apellido" [disabled]="!usuario.editable" (keyup.enter)="onEnter($event)" (blur)="actualizarAdmin(usuario)" [(ngModel)]="usuario.Usuario.apellido"></td>
+                    <td ><input type="text" class="form-control" [ngClass]="{'asd': !usuario.editable}" id="telefono" [disabled]="!usuario.editable" (keyup.enter)="onEnter($event)" (blur)="actualizarAdmin(usuario)" [(ngModel)]="usuario.Usuario.telefono"></td>
+                    <td width="12">
+                      <div class="btn-group" role="group">
+                          <button class="btn btn-icon btn-primary mx-1" (click)="perfil(usuario.id)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Perfil de usuario"><i class="bi bi-person-circle"></i></button>
+                          <button *ngIf="tipo=='ADMIN'" class="btn btn-icon btn-danger mx-1"  routerLinkActive="active" (click)="eliminar(usuario.id)"><i class="bi bi-person-dash-fill" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>
+                          <button *ngIf="tipo=='ADMIN'" class="btn btn-icon btn-warning mx-1" (click)="editOn(usuario)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Editar"><i class="bi bi-pencil-square"></i></button>
+                      </div>
+                  </td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+            </ngb-pagination>
+
+            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()">
+              <option [ngValue]="5">5</option>
+              <option [ngValue]="10">10</option>
+              <option [ngValue]="20">20</option>
+            </select>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alta masiva</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-alta-masiva *ngIf="rutaAltaMasiva" [rutaArchivo]=rutaArchivo [rutaAltaMasiva]=rutaAltaMasiva ></app-alta-masiva>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="getAdministrativos()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="altaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Alta administrativo</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-administrativo-add></app-administrativo-add>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="getAdministrativos()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

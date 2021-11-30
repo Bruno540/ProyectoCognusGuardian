@@ -1,0 +1,8 @@
+node_modules
+uploads/*
+uploads/!tiposervicios.csv
+uploads/!administrativos.csv
+uploads/!edificios.csv
+uploads/!especialidades.csv
+uploads/!medicos.csv
+uploads/!zonas.csv

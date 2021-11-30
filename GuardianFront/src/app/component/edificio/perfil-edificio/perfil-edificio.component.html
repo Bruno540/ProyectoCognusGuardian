@@ -1,0 +1,148 @@
+<div class="container">
+  <div class="main-body">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="main-breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="component/index.html">Home</a></li>
+        <li class="breadcrumb-item">
+          <a href="component/edificios">Edificios</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          {{ edificio?.nombre }}
+        </li>
+      </ol>
+    </nav>
+    <!-- /Breadcrumb -->
+
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                *ngIf="edificio"
+                [src]="'http://localhost:5000/' + edificio?.rutaFoto"
+                alt="Admin"
+                class="rounded-circle"
+                width="150"
+              />
+              <div class="mt-3">
+                <h4>Ubicacion</h4>
+                <p class="text-secondary mb-1">{{ edificio?.pais }}</p>
+                <p class="text-muted font-size-sm">{{ edificio?.ciudad }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button
+              class="nav-link active"
+              id="nav-home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-home"
+              type="button"
+              role="tab"
+              aria-controls="nav-home"
+              aria-selected="true"
+            >
+              Datos
+            </button>
+            <button
+              class="nav-link"
+              id="nav-profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-profile"
+              type="button"
+              role="tab"
+              aria-controls="nav-profile"
+              aria-selected="false"
+            >
+              Ubicaciones
+            </button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Direccion</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ edificio?.direccion }}
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Nombre:</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ edificio?.nombre }}
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Telefono</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ edificio?.telefono }}
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Cantidad de salas</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ salas }}
+                  </div>
+                </div>
+                <hr />
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-profile"
+            role="tabpanel"
+            aria-labelledby="nav-profile-tab"
+          >
+            <div class="card mt-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="table-responsive-xl">
+                    <table class="table table-bordered">
+                      <thead class="table-primary">
+                        <tr>
+                          <th scope="col">Nro</th>
+                          <th scope="col">Decripcion</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let sala of edificio?.Ubicacions">
+                          <td>{{ sala.id }}</td>
+                          <td>{{ sala.descripcion }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

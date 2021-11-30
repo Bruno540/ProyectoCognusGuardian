@@ -1,0 +1,72 @@
+<div class="container p-3">
+    <div class="card responsive-x1" style="opacity: 0.85;">
+      <div class="card-header">
+        <h2 class="text-dark">Guardias</h2>
+      </div>
+      <div class="card-body">
+        <div class="row pt-3">
+          <div class="col-9" id="pad">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCalendario">
+              Calendario <i class="bi bi-journal-medical"></i>
+            </button>
+            <button class="btn btn-success ml-2" (click)="sincronizarCalendar()">Sincronizar Google Calendar</button>
+          </div>
+          <div class="col-3">
+            <form>
+              <div class="form-group float-right">
+                <input class="form-control ml-2" type="text" placeholder="Buscar" [formControl]="filter"/>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="table-responsive-xl w-100">
+            <table class="table table-bordered" id="customDataTable">
+              <thead class="table-primary">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha final</th>
+                <th scope="col">Duración</th>
+                <th scope="col">Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let guardia of guardias">
+                <td data-th="Id:">{{guardia.id}}</td>
+                <td data-th="Descripcion:">{{guardia.descripcion}}</td>
+                <td data-th="Fecha de inicio:">{{guardia.fechainicio | date:'dd/MM/yyyy - HH:mm'}}</td>
+                <td data-th="Fecha de fin:">{{guardia.fechafin | date:'dd/MM/yyyy - HH:mm'}}</td>
+                <td data-th="Duracion:">{{guardia.duracion}}</td>
+                <td data-th="Acciones:">
+                  <div class="btn-group" role="group">
+                      <button class="btn btn-icon btn-danger mx-1"  routerLinkActive="active" (click)="ofrecerliberar(guardia.id)"><i class="bi bi-person-dash-fill"></i></button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalCalendario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Mi Calendario</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <app-dashboard *ngIf="guardias" [draggable]=false [guardias]=guardias></app-dashboard>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+        </div>
+    </div>
+</div>

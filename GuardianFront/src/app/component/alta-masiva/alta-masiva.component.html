@@ -1,0 +1,39 @@
+<div class="top">
+    <div class="row">
+        <div class="col-8">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile01" (change)="selectFile($event)" aria-describedby="inputGroupFileAddon01">
+                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <button class="btn btn-success btn-sm" [disabled]="selectedFiles===undefined" (click)="upload()">
+                Upload
+            </button>
+            <button class="btn btn-primary btn-sm ml-2" (click)="download()">
+                Plantilla
+             </button>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-8">
+            <div *ngIf="enabled">
+                <a  href="{{ruta}}" > Descargar archivo </a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="currentFile" class="progress my-3">
+        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+            attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+            [ngStyle]="{ width: progress + '%' }">
+            {{ progress }}%
+        </div>
+    </div>
+    <div *ngIf="message && !okmessage" class="alert alert-danger" role="alert">{{ message }}</div>
+    <div *ngIf="okmessage" class="alert alert-success" role="alert">{{ okmessage }}</div>
+</div>

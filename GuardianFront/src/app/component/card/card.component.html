@@ -1,0 +1,198 @@
+<div class="row ">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='ADMIN' || tipo=='ADMINISTRATIVO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/medicos.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Médicos</h4>
+                        <p class="card-text">Panel de control de los médicos registrados en el sistema.</p>
+                        <a href="component/medicos" class="btn btn-primary">Ver médicos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='MEDICO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/guardiasdisponibles.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Guardias disponibles</h4>
+                        <p class="card-text">Panel de guardias disponibles para postularse.</p>
+                        <a href="component/guardiasdisponibles" class="btn btn-primary">Ver guardias</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='ADMIN' || tipo=='ADMINISTRATIVO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/administrativo.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Administrativos</h4>
+                        <p class="card-text">Panel de control de los administrativos registrados en el sistema.</p>
+                        <a href="component/administrativos" class="btn btn-primary">Ver administrativos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='MEDICO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/guardiasasignadas.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Guardias asignadas</h4>
+                        <p class="card-text">Panel de guardias asignadas para atender.</p>
+                        <a href="component/misguardias" class="btn btn-primary">Ver guardias</a>
+                    </div>
+                </div>
+            </div>
+             <div class="col-lg-3 col-md-6" *ngIf="tipo=='MEDICO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/eventualidad.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Eventualidades</h4>
+                        <p class="card-text">Lista de eventualidades generadas.</p>
+                        <a href="component/eventualidades" class="btn btn-primary">Ver Eventualidades</a>
+                    </div>
+                </div>
+            </div>
+             <div class="col-lg-3 col-md-6" *ngIf="tipo=='MEDICO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/mispostulaciones.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Mis postulaciones</h4>
+                        <p class="card-text">Lista de guardias a las que se ha postulado el médico.</p>
+                        <a href="component/mispostulaciones" class="btn btn-primary">Mis postulaciones</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='ADMIN' || tipo=='ADMINISTRATIVO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/hospitals.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Edificios</h4>
+                        <p class="card-text">Panel de control de los edificios registrados en el sistema.</p>
+                        <a href="component/edificios" class="btn btn-primary">Ver edificios</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 img-responsive" *ngIf="tipo=='ADMIN'">
+                <div class="card" >
+                    <img class="card-img-top img-responsive" src="assets/images/big/especialidades.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Especialidades</h4>
+                        <p class="card-text">Panel de control de las especialidades registradas en el sistema.</p>
+                        <a href="component/especialidades" class="btn btn-primary">Ver especialidades</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 img-responsive" *ngIf="tipo=='ADMINISTRATIVO'">
+                <div class="card" >
+                    <img class="card-img-top img-responsive" src="assets/images/big/dashboard.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Dashboard</h4>
+                        <p class="card-text">Panel administrativo de las guardias registradas en el sistema.</p>
+                        <a href="component/especialidades" class="btn btn-primary">Ver dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='ADMIN' || tipo=='ADMINISTRATIVO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/servicios.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Servicios</h4>
+                        <p class="card-text">Gestión de los servicios locales registrados en el sistema.</p>
+                        <a href="component/servicios" class="btn btn-primary">Ver servicios</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='ADMIN' || tipo=='ADMINISTRATIVO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/domicilio.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Servicios a Domicilio</h4>
+                        <p class="card-text">Gestion de los servicios a domicilio registrados en el sistema.</p>
+                        <a href="component/serviciosdomicilio" class="btn btn-primary">Ver servicios</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6"  *ngIf="tipo=='ADMIN'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/tiposServicios.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tipos de servicio</h4>
+                        <p class="card-text">Gestion de los tipos de servicio disponibles en el sistema.</p>
+                        <a href="component/tiposervicio" class="btn btn-primary">Ver tipos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6"  *ngIf="tipo=='ADMINISTRATIVO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/asignarguardias.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Asignar guardias</h4>
+                        <p class="card-text">Panel de administración de la asignación de médicos a guardias.</p>
+                        <a href="component/publicarguardia" class="btn btn-primary">Asignar guardias</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='ADMINISTRATIVO'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/estadisticas.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Estadisticas</h4>
+                        <p class="card-text">Visualización de las estadísticas generales del sistema para administrativos y administradores.</p>
+                        <a href="dashboard" class="btn btn-primary">Ver estadísticas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='VISITANTE'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/login.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Iniciar sesión</h4>
+                        <p class="card-text">Iniciar sesión en el sistema.</p>
+                        <a href="/component/login" class="btn btn-primary">Iniciar sesión</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='VISITANTE'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/subscription.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Suscripción</h4>
+                        <p class="card-text">Registrarse en el sistema.</p>
+                        <a href="/component/pago" class="btn btn-primary">Suscribirse</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='VISITANTE'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/aboutus.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Acerca de nosotros</h4>
+                        <p class="card-text">Información sobre nosotros.</p>
+                        <a href="component/card" class="btn btn-primary">Acerca de nosotros</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" *ngIf="tipo=='VISITANTE'">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/big/comments.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Contáctanos</h4>
+                        <p class="card-text">Envianos tus comentarios y sugerencias.</p>
+                        <a href="component/card" class="btn btn-primary">Sugerencias</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 img-responsive" *ngIf="tipo=='ADMIN'">
+                <div class="card" >
+                    <img class="card-img-top img-responsive" src="assets/images/big/zonas.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Zonas</h4>
+                        <p class="card-text">Zonas disponibles para la asignación de los medicos y servicios a domicilio.</p>
+                        <a href="component/zonas" class="btn btn-primary">Ver zonas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.dot {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.red-dot{
+    background-color: #ad2121;
+}
+
+.yellow-dot{
+    background-color: #e3bc08;
+}
+
+.blue-dot{
+    background-color: #1e90ff;
+}
+
+span{
+    margin-left: 3px;
+    margin-right: 10px;
+}

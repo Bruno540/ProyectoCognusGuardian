@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="card responsive-x1" style="opacity: 0.85">
+    <div class="card-header">
+      <h2 class="text-dark">Eventualidades</h2>
+    </div>
+    <div class="card-body">
+      <div class="row pt-3">
+        <div class="col-9" id="pad">
+          <a class="btn btn-primary" href="component/guardiasdisponibles">
+            Guardias disponibles <i class="bi bi-journal-arrow-up"></i>
+          </a>
+        </div>
+        <div class="col-3">
+          <form>
+            <div class="form-group float-right">
+              <input
+                class="form-control ml-2"
+                type="text"
+                placeholder="Buscar"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row pt-3">
+        <div class="table-responsive-xl w-100">
+          <table class="table table-bordered" id="customDataTable">
+            <thead class="table-primary">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Guardia</th>
+                <th scope="col">Médico actual</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Fecha de inicio</th>
+                <th scope="col">Estado Guardia</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ev of eventualidades">
+                <td data-th="Id:">{{ ev.Guardia.id }}</td>
+                <td data-th="Descripcion:">{{ ev.Guardia.descripcion }}</td>
+                <td data-th="Medico:">
+                  {{ ev.Medico.nombre }} {{ ev.Medico.apellido }}
+                </td>
+                <td data-th="Especialidad:">{{ ev.Especialidad.nombre }}</td>
+                <td data-th="Fecha de inicio:">
+                  {{ ev.Guardia.fechainicio | date: "dd/MM/yyyy - HH:mm" }}
+                </td>
+                <td data-th="Estado:">{{ ev.Guardia.estado }}</td>
+                <td>
+                  <button class="btn btn-success" (click)="postularse(ev.id)">
+                    Postularse
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination
+            [collectionSize]="collectionSize"
+            [(page)]="page"
+            [pageSize]="pageSize"
+          >
+          </ngb-pagination>
+          <select
+            class="custom-select"
+            style="width: auto"
+            [(ngModel)]="pageSize"
+          >
+            <option [ngValue]="2">2</option>
+            <option [ngValue]="4">4</option>
+            <option [ngValue]="6">6</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

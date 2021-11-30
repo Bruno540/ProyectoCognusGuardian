@@ -1,0 +1,110 @@
+<div class="container-fluid">
+    <div class="card responsive-x1" style="opacity: 0.85;">
+      <div class="card-header">
+        <h2 class="text-dark">Médicos</h2>
+      </div>
+      <div class="card-body">
+        <div class="row pt-3">
+          <div class="col-9" id="pad">
+              <button *ngIf="tipo=='ADMIN'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#altaModal">
+                Alta <i class="bi bi-person-plus-fill"></i>
+              </button>
+              <button *ngIf="tipo=='ADMIN'" type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Alta masiva <i class="bi bi-people-fill"></i>
+              </button>
+          </div>
+          <div class="col-3">
+              <form>
+                <div class="form-group float-right">
+                  <input class="form-control ml-2" type="text" placeholder="Buscar" (keyup)="busqueda($event)"/>
+                </div>
+              </form>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="table-responsive-xl w-100 ">
+            <table class="table table-bordered" id="customDataTable">
+              <thead class="table-primary">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Correo electrónico</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Fecha de nacimiento</th>
+                  <th scope="col">Dirección</th>
+                  <th scope="col">Teléfono</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let medico of medicos">
+                  <td data-th="Id">{{medico.id}}</td>
+                  <td data-th="Email">{{medico.Usuario.email}}</td>
+                  <td data-th="Nombre"><input type="text" class="form-control" [ngClass]="{'asd': !medico.editable}" id="nombre" [disabled]="!medico.editable" (keyup.enter)="onEnter($event)" (blur)="actualizarMedico(medico)" [(ngModel)]="medico.Usuario.nombre"></td>
+                  <td data-th="Apellido"><input type="text" class="form-control" [ngClass]="{'asd': !medico.editable}" id="apellido" [disabled]="!medico.editable" (keyup.enter)="onEnter($event)" (blur)="actualizarMedico(medico)" [(ngModel)]="medico.Usuario.apellido"></td>
+                  <td data-th="Fecha de nacimiento"><ngb-highlight [result]="medico.fecha_nac | date:'dd/MM/yyyy'" [term]="filter.value"></ngb-highlight></td>
+                  <td data-th="Direccion"><input type="text" class="form-control" [ngClass]="{'asd': !medico.editable}" id="direccion" [disabled]="!medico.editable" (keyup.enter)="onEnter($event)" (blur)="actualizarMedico(medico)" [(ngModel)]="medico.direccion"></td>
+                  <td data-th="Telefono"><input type="text" class="form-control" [ngClass]="{'asd': !medico.editable}" id="telefono" [disabled]="!medico.editable" (keyup.enter)="onEnter($event)" (blur)="actualizarMedico(medico)" [(ngModel)]="medico.Usuario.telefono"></td>
+                  <td width="12">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-icon btn-primary mx-1" (click)="perfil(medico.id)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Perfil de usuario"><i class="bi bi-person-circle"></i></button>
+                        <button *ngIf="tipo=='ADMIN'"  class="btn btn-icon btn-danger mx-1"  routerLinkActive="active" (click)="eliminar(medico.id)" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="bi bi-person-dash-fill"></i></button>
+                        <button *ngIf="tipo=='ADMIN'"  class="btn btn-icon btn-warning mx-1" routerLinkActive="active" (click)="editOn(medico)"><i class="bi bi-pencil-square" data-toggle="tooltip" data-placement="top" title="Editar"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">
+          </ngb-pagination>
+  
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="20">20</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alta masiva</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-alta-masiva *ngIf="rutaAltaMasiva" [rutaArchivo]=rutaArchivo  [rutaAltaMasiva]=rutaAltaMasiva ></app-alta-masiva>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="getMedicos()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="altaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Alta medico</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-medico-add></app-medico-add>    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="getMedicos()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

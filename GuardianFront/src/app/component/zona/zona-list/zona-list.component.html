@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="card responsive-x1" style="opacity: 0.85;">
+      <div class="card-header">
+        <h2 class="text-dark">Zonas</h2>
+      </div>
+      <div class="card-body">
+        <div class="row pt-3">    
+          <div class="col-9" id="pad">
+            <button *ngIf="tipo=='ADMIN'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#altaModal">
+              Alta <i class="bi bi-geo"></i>
+            </button>
+            <button *ngIf="tipo=='ADMIN'" type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Alta masiva <i class="bi bi-geo"></i>
+            </button>
+          </div>
+          <div class="col-3">
+              <form>
+                <div class="form-group float-right">
+                  <input class="form-control ml-2" type="text" placeholder="Buscar" name="busqueda" [(ngModel)]="filter" (keyup)="busqueda()"/>
+                </div>
+              </form>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="table-responsive-xl w-100">
+            <table class="table table-bordered">
+              <thead class="table-primary">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">País</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Localidad</th>
+                <th scope="col">Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let esp of zonas">
+                <td>{{esp.id}}</td>
+                <td><input type="text" class="form-control" [ngClass]="{'asd': !esp.editable}" id="certificacion" [disabled]="!esp.editable" (keyup.enter)="onEnter($event)" (blur)="editar(esp)" [(ngModel)]="esp.pais"></td>
+                <td><input type="text" class="form-control" [ngClass]="{'asd': !esp.editable}" id="certificacion" [disabled]="!esp.editable" (keyup.enter)="onEnter($event)" (blur)="editar(esp)" [(ngModel)]="esp.departamento"></td>
+                <td><input type="text" class="form-control" [ngClass]="{'asd': !esp.editable}" id="certificacion" [disabled]="!esp.editable" (keyup.enter)="onEnter($event)" (blur)="editar(esp)" [(ngModel)]="esp.localidad"></td>
+                <td width="12">
+                  <div class="btn-group" role="group">
+                    <button *ngIf="tipo=='ADMIN'" class="btn btn-icon btn-danger" (click)="eliminar(esp.id)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="bi bi-trash-fill"></i></button>
+                    <button *ngIf="tipo=='ADMIN'" class="btn btn-icon btn-warning mx-1" (click)="editOn(esp)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Editar"><i class="bi bi-pencil-square"></i></button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex flex-wrap justify-content-between">
+          <ngb-pagination [collectionSize]="collectionSize" [maxSize]="2" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()" size="sm" [boundaryLinks]="true">
+          </ngb-pagination>
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="20">20</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="altaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Alta tipo servicio</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-zona-add></app-zona-add>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="getZonas()">Cerrar</button>
+        </div>
+        </div>
+    </div>
+  </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Alta masiva</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <app-alta-masiva *ngIf="rutaAltaMasiva" [rutaArchivo]=rutaArchivo  [rutaAltaMasiva]=rutaAltaMasiva ></app-alta-masiva>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="getZonas()">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  

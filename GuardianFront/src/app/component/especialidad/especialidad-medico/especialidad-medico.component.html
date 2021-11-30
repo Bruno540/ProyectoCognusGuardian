@@ -1,0 +1,14 @@
+<div class="card-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mt-2">
+        <label for="especialidades">Especialidades:</label>
+        <select multiple [(ngModel)]="form.especialidades" name="especialidades" id="especialidades" class="custom-select">
+          <option *ngFor="let esp of especialidades" [value]="esp.id">
+            {{esp.nombre}}
+          </option>
+        </select>
+      </div>
+      <br>
+      <button class="btn btn-primary" >Aceptar</button>
+    </form>
+  </div>

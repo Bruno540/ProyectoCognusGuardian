@@ -1,0 +1,50 @@
+<div class="card h-100">
+  <div class="card-body">
+      <div class="d-md-flex align-items-center">
+          <div>
+              <h4 class="card-title">Eventualidades</h4>
+              <h5 class="card-subtitle">Cantidad de eventualidades generadas en los ultimos meses</h5>
+          </div>
+      </div>
+      <div class="row mt-3">
+          <!-- column -->
+          <div class="col-lg-12">
+              <div style="height: 300px;">
+                <canvas baseChart 
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins">
+                </canvas>
+              </div>
+          </div>
+          <div class="row pt-3">
+            <div class="col">
+              <div class="row">
+                <div class="col-5">
+                  <label for="fechainicio">Fecha inicio</label>
+                </div>
+                <div class="col-5">
+                  <label for="fechafin">Fecha fin</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <input type="date" [(ngModel)]="fechainicio" class="form-control mt-1" id="fechainicio" name="fechainicio" >
+                </div>
+                <div class="col-5">
+                  <input type="date" [(ngModel)]="fechafin" class="form-control mt-1" id="fechafin" name="fechafin" >
+                </div>
+                <div class="col-2 align-self-end">
+                  <button class="btn btn-primary" id="filter" (click)="obtenerEstadisticas()">Filtrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- column -->
+      </div>
+  </div>
+</div>

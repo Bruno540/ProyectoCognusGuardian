@@ -1,0 +1,143 @@
+<div class="container">
+  <div class="main-body">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="main-breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="component/index.html">Home</a></li>
+        <li class="breadcrumb-item">
+          <a href="component/servicios">Servicios</a>
+        </li>
+      </ol>
+    </nav>
+    <!-- /Breadcrumb -->
+    <div class="row gutters-sm">
+      <div class="col-md-8">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button
+              class="nav-link active"
+              id="nav-home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-home"
+              type="button"
+              role="tab"
+              aria-controls="nav-home"
+              aria-selected="true"
+            >
+              Datos generales
+            </button>
+            <button
+              class="nav-link"
+              id="nav-profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-profile"
+              type="button"
+              role="tab"
+              aria-controls="nav-profile"
+              aria-selected="false"
+            >
+              Especialidades
+            </button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="card mb-3">
+              <div *ngIf="local" class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Edificio</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ servicio?.Local.Edificio.nombre }}
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Ubicacion</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ servicio?.Local.Ubicacion.descripcion }}
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Tipo de servicio</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ servicio?.Local.TipoServicio.nombre }}
+                  </div>
+                </div>
+                <hr />
+              </div>
+              <div *ngIf="!local" class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Id</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ servicio?.id }}
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Ubicacion</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ servicio?.Domicilio.Zona.departamento }} -
+                    {{ servicio?.Domicilio.Zona.localidad }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-profile"
+            role="tabpanel"
+            aria-labelledby="nav-profile-tab"
+          >
+            <div class="card mt-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="table-responsive-xl">
+                    <table class="table table-bordered">
+                      <thead class="table-primary">
+                        <tr>
+                          <th scope="col">Especialidad</th>
+                          <th scope="col">Medicos necesarios</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let esp of servicio?.Especialidads">
+                          <td>{{ esp.nombre }}</td>
+                          <td>{{ esp.EspecialidadServicio.cant_medicos }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-contact"
+            role="tabpanel"
+            aria-labelledby="nav-contact-tab"
+          >
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

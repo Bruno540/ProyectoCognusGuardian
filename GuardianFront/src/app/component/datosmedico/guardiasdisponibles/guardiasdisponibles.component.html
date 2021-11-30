@@ -1,0 +1,179 @@
+<div class="container p-3">
+  <div class="alert alert-danger" *ngIf="isError" role="alert">
+    {{ errorMessage }}
+  </div>
+  <div class="card responsive-x1" style="opacity: 0.85">
+    <div class="card-header">
+      <h2 class="text-dark">Guardias</h2>
+    </div>
+    <div class="card-body">
+      <div class="row pt-3">
+        <div class="col-9" id="pad">
+          <a class="btn btn-primary" href="component/mispostulaciones">
+            Mis postulaciones <i class="bi bi-card-checklist"></i>
+          </a>
+        </div>
+        <div class="col-3">
+          <form>
+            <div class="form-group float-right">
+              <input
+                class="form-control ml-2"
+                type="text"
+                placeholder="Buscar"
+                [formControl]="filter"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row pt-3">
+        <div class="table-responsive-xl w-100">
+          <table class="table table-bordered" id="customDataTable">
+            <thead class="table-primary">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha final</th>
+                <th scope="col">Duración</th>
+                <th scope="col">Estado Guardia</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let guardia of guardias">
+                <td data-th="Id:">{{ guardia.id }}</td>
+                <td data-th="Descripcion:">
+                  <p>{{ guardia.descripcion }}</p>
+                </td>
+                <td data-th="Fecha de inicio:">
+                  <p>{{ guardia.fechainicio | date: "dd/MM/yyyy - HH:mm" }}</p>
+                </td>
+                <td data-th="Fecha de fin:">
+                  <p>{{ guardia.fechafin | date: "dd/MM/yyyy - HH:mm" }}</p>
+                </td>
+                <td data-th="Duracion:">
+                  <p>{{ guardia.duracion }} horas</p>
+                </td>
+                <td data-th="Estado:">
+                  <p>{{ guardia.estado }}</p>
+                </td>
+                <td data-th="Acciones">
+                  <button
+                    class="btn btn-success"
+                    data-bs-toggle="modal"
+                    (click)="test(guardia)"
+                    data-bs-target="#altaModal"
+                  >
+                    Postularse
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination
+            [collectionSize]="collectionSize"
+            [(page)]="page"
+            [pageSize]="pageSize"
+          >
+          </ngb-pagination>
+          <select
+            class="custom-select"
+            style="width: auto"
+            [(ngModel)]="pageSize"
+          >
+            <option [ngValue]="2">2</option>
+            <option [ngValue]="4">4</option>
+            <option [ngValue]="6">6</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL POSTULACION -->
+<div
+  class="modal fade"
+  id="altaModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 *ngIf="guardiaseleccionada">
+          Postulación: {{ guardiaseleccionada.descripcion }}
+        </h3>
+      </div>
+      <div class="modal-body">
+        <h3></h3>
+        <div class="row">
+          <div class="col">
+            <table class="table table-bordered w-50">
+              <thead>
+                <tr>
+                  <th>Especialidad</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let esp of especialidades">
+                  <td>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault1"
+                        value="{{ esp.id }}"
+                        [(ngModel)]="selectedEsp"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{ esp.nombre }}
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col" *ngIf="guardiaseleccionada">
+            <table>
+              <tr>
+                <th>Inicio:</th>
+                <td>
+                  {{
+                    guardiaseleccionada.fechainicio | date: "dd/MM/yyyy hh:mm"
+                  }}
+                </td>
+              </tr>
+              <tr>
+                <th>Fin:</th>
+                <td>
+                  {{ guardiaseleccionada.fechafin | date: "dd/MM/yyyy hh:mm" }}
+                </td>
+              </tr>
+              <tr>
+                <th>Duracion:</th>
+                <td>{{ guardiaseleccionada.duracion }} hs</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="postularse()">
+          Postularse
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
