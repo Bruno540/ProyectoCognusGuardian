@@ -36,7 +36,7 @@
               <tbody>
               <tr *ngFor="let esp of zonas">
                 <td>{{esp.id}}</td>
-                <td><input type="text" class="form-control" [ngClass]="{'asd': !esp.editable}" id="certificacion" [disabled]="!esp.editable" (keyup.enter)="onEnter($event)" (blur)="editar(esp)" [(ngModel)]="esp.pais"></td>
+                <td ><input type="text" class="form-control" [ngClass]="{'asd': !esp.editable}" id="certificacion" [disabled]="!esp.editable" (keyup.enter)="onEnter($event)" (blur)="editar(esp)" [(ngModel)]="esp.pais"></td>
                 <td><input type="text" class="form-control" [ngClass]="{'asd': !esp.editable}" id="certificacion" [disabled]="!esp.editable" (keyup.enter)="onEnter($event)" (blur)="editar(esp)" [(ngModel)]="esp.departamento"></td>
                 <td><input type="text" class="form-control" [ngClass]="{'asd': !esp.editable}" id="certificacion" [disabled]="!esp.editable" (keyup.enter)="onEnter($event)" (blur)="editar(esp)" [(ngModel)]="esp.localidad"></td>
                 <td width="12">

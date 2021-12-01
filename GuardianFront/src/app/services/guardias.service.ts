@@ -32,13 +32,12 @@ export class GuardiasService {
   }
 
 
- agregarGuardia(descripcion: string, fechainicio: string, idservicio: number, duracion: number, met_asignacion: string): Observable<any> {
+ agregarGuardia(descripcion: string, fechainicio: string, idservicio: number, duracion: number): Observable<any> {
     return this.http.post(AUTH_API, {
       descripcion,
       fechainicio,
       idservicio,
-      duracion,
-      met_asignacion
+      duracion
       },httpOptions);
   }
 

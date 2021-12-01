@@ -72,11 +72,11 @@ export class UbicacionListComponent implements OnInit {
     }, err=>{
       this.handleError.showErrors(err);
     });
-    this.editable=true;
+    sala.editable=false;
   }
 
-  editOn(): void{
-    this.editable=!this.editable;
+  editOn(sala:any): void{
+    sala.editable=!sala.editable;
   }
 
   onEnter(e: any): void{

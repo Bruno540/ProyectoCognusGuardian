@@ -31,6 +31,9 @@ Ubicacion.atributos = {
 }
 
 Ubicacion.opciones = {
+  defaultScope: {
+    order: [['id', 'ASC']],
+  },
   tableName: 'ubicacion'
 };
 

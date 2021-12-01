@@ -6,14 +6,6 @@
                 [(ngModel)]="form.descripcion">
         </div>
         <div class="form-group">
-            <label for="asignacion">Metodo de asignación:</label>
-            <select [(ngModel)]="form.met_asignacion" name="asignacion" id="asignacion" required class="custom-select mt-1"
-                    aria-label="Default select example" >
-            <option>LISTA</option>
-            <option>DIFUSION</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label for="duracion">Duración: </label>
             <input type="number" max=8 min=1 class="form-control mt-1" id="duracion" name="duracion"
                 placeholder="Ingrese la duracion" [(ngModel)]="form.duracion">

@@ -7,7 +7,6 @@
       <div class="card-body">
         <div class="row pt-3">
           <div class="col-9" id="pad">
-            <!-- <a class="btn btn-primary" href="/ubicacionesabm"> Nueva <i class="bi bi-plus-lg"></i> </a> -->
             <button type="button" class="btn btn-primary" *ngIf="tipo=='ADMIN'" data-bs-toggle="modal" data-bs-target="#altaModal">
               Alta <i class="bi bi-door-open"></i>
             </button>
@@ -34,12 +33,12 @@
               <tbody>
               <tr *ngFor="let sala of ubicaciones">
                 <td >{{sala.id}}</td>
-                <td ><input type="text" class="form-control" [ngClass]="{'asd': editable == true}" id="descripcion" [disabled]="editable" (keyup.enter)="onEnter($event)" (blur)="actualizarDescripcion(sala, $event)" value="{{sala.descripcion}}"></td>
+                <td ><input type="text" class="form-control" [ngClass]="{'asd': !sala.editable}" id="descripcion" [disabled]="!sala.editable" (keyup.enter)="onEnter($event)" (blur)="actualizarDescripcion(sala, $event)" value="{{sala.descripcion}}"></td>
                 <td *ngIf="!edificio">{{sala!.Edificio?.nombre!}}</td>
                 <td width="12" >
                   <div class="btn-group" role="group">
                     <button *ngIf="tipo=='ADMIN'" class="btn btn-icon btn-danger mx-1"  (click)="eliminar(sala.idedificio, sala.id)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="bi bi-trash-fill"></i></button>
-                    <button *ngIf="tipo=='ADMIN'" class="btn btn-icon btn-warning mx-1" (click)="editOn()" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="bi bi-pencil-square"></i></button>
+                    <button *ngIf="tipo=='ADMIN'" class="btn btn-icon btn-warning mx-1" (click)="editOn(sala)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="bi bi-pencil-square"></i></button>
                     <a href="/component/perfiledificio?idedificio={{sala.idedificio}}" class="btn btn-icon btn-primary mx-1" data-toggle="tooltip" data-placement="top" title="Ver edificio"><i class="bi bi-building"></i></a>
                   </div>
                 </td>

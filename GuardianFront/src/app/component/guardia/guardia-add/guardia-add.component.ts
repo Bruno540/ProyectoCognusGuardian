@@ -30,8 +30,7 @@ export class GuardiaAddComponent implements OnInit {
     descripcion: null,
     fechainicio: null,
     idservicio: null,
-    duracion: null,
-    met_asignacon: null
+    duracion: null
   };
 
   constructor(private guardiasService: GuardiasService, private handleError: HandleErrorsService) {
@@ -44,11 +43,11 @@ export class GuardiaAddComponent implements OnInit {
 
     if(this.servicio.Domicilio){
       this.local = false;
-      this.form.descripcion = `Guardia a domicilio ${this.servicio.Domicilio.Zona.localidad} - ${this.servicio.Domicilio.Zona.departamento} `;
+      this.form.descripcion = `Guardia a domicilio ${this.servicio.Domicilio.Zona.localidad} - ${this.servicio.Domicilio.Zona.departamento}`;
     }
     else{
       this.local = true
-      this.form.descripcion = `Guardia ${this.servicio.Local.Edificio.nombre} - ${this.servicio.Local.Ubicacion.descripcion} `;
+      this.form.descripcion = `Guardia ${this.servicio.Local.Edificio.nombre} - ${this.servicio.Local.Ubicacion.descripcion}`;
 
     }
   }
@@ -60,7 +59,7 @@ export class GuardiaAddComponent implements OnInit {
       return;
     }
     if(this.servicio){
-      this.guardiasService.agregarGuardia(descripcion, fechainicio, this.servicio.id, duracion, met_asignacion).subscribe( data =>{
+      this.guardiasService.agregarGuardia(descripcion, fechainicio, this.servicio.id, duracion).subscribe( data =>{
         this.handleError.showSuccessAlert(data.message)
         this.form={};
       }, err=>{
@@ -70,7 +69,8 @@ export class GuardiaAddComponent implements OnInit {
   }
 
   updateDescription(){
-    this.form.descripcion += " - " + moment(this.form.fechainicio).format("YYYY-MM-DD");
+    this.form.descripcion = this.form.descripcion.split('+')[0];
+    this.form.descripcion = `${this.form.descripcion} + ${moment(this.form.fechainicio).format("YYYY-MM-DD")} `;
   }
 
 }

@@ -14,7 +14,7 @@ class ExpressLoader {
   constructor () {
     const app = express();
 
-    global.semana = 604800000;
+    global.dia = 86400000;
 
     // Contenido estatico
     app.use('/uploads',express.static(path.resolve('uploads')));

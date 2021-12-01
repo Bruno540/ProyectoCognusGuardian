@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EdificiosService } from 'src/app/services/edificios.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-perfil-edificio',
@@ -9,9 +10,11 @@ import { EdificiosService } from 'src/app/services/edificios.service';
 })
 export class PerfilEdificioComponent implements OnInit {
 
+  url: string;
   edificio?: any;
   salas?: number;
   constructor(private route: ActivatedRoute, private edificiosService: EdificiosService,  public router: Router) {
+    this.url=environment.BACKEND_URL;
     this.route.queryParams.subscribe(params => {
       const id =params.idedificio;
       this.edificiosService.obtenerEdificio(id).subscribe(data=>{

@@ -1,17 +1,14 @@
 <!-- ============================================================== -->
-<!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
 <ngx-spinner type="ball-pulse-sync"></ngx-spinner>
 <div id="main-wrapper" [ngClass]="{'show-sidebar': showMobileMenu}" dir="ltr" data-theme="light" data-layout="vertical"
     [attr.data-sidebartype]="sidebartype" data-sidebar-position="absolute" data-header-position="fixed"
     data-boxed-layout="full">
     <!-- ============================================================== -->
-    <!-- Topbar header - style you can find in topbar.scss -->
     <!-- ============================================================== -->
     <header class="topbar" data-navbarbg="skin6">
         <nav class="d-flex top-navbar navbar-expand-md navbar-light">
             <div class="navbar-header" [ngClass]="(expandLogo)?'expand-logo':''" data-logobg="skin1">
-                <!-- This is for the sidebar toggle which is visible on mobile only -->
                 <a (click)="showMobileMenu = !showMobileMenu" (blur)="showMobileMenu = false" class="nav-toggler waves-effect waves-light d-block d-md-none"
                     href="javascript:void(0)">
                     <i [ngClass]="(showMobileMenu)?'ti-close':'ti-menu'"></i>
@@ -22,7 +19,6 @@
                 <a class="navbar-brand" href="/component/home">
                     <!-- Logo icon -->
                     <b class="logo-icon">
-                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Light Logo icon -->
                         <img src="assets/images/Logo_izq.png" alt="homepage" class="light-logo" />
                     </b>
@@ -41,13 +37,12 @@
                 <div ngbDropdown class="topbartoggler d-block d-md-none" *ngIf="usuario!='VISITANTE'">
                     <a class="text-light" id="dropdownBasic1" ngbDropdownToggle><i class="ti-more"></i></a>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                      <a ngbDropdownItem href="/component/miperfil"><i class="ti-user m-r-5 m-l-5"></i>Perfil</a>
+                      <a ngbDropdownItem href="/component/miperfil" *ngIf="usuario==='MEDICO'"><i class="ti-user m-r-5 m-l-5"></i>Perfil</a>
                       <a (click)="logout()" ngbDropdownItem><i class="fa fa-power-off m-r-5 m-l-5"></i>Cerrar sesión</a>
                     </div>
                 </div>
             </div>
             <!-- ============================================================== -->
-            <!-- End Logo -->
             <!-- ============================================================== -->
             <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
                 <app-navigation (toggleSidebar)="toggleSidebarType()" class="w-100"></app-navigation>

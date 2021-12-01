@@ -245,6 +245,13 @@ export class AsignarguardiaComponent implements OnInit {
     });
   }
 
+  publicarGuardia(): void{
+    this.guardiasService.publicarGuardia(this.guardia.id).subscribe(data=>{
+      this.getGuardia(this.guardia.id);
+      this.handleError.showSuccessAlert(data.message);
+    });
+  }
+
   cargarGuardia(guardia:any,color:any){
     this.events = [
       ...this.events,

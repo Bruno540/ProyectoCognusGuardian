@@ -28,11 +28,6 @@ Guardia.atributos = {
         return this.dataValues.fechafin;
       }
     },
-    met_asignacion:{
-      type: Sequelize.ENUM('LISTA','DIFUSION'),
-      allowNull: false,
-      defaultValue: "LISTA"
-    },
     duracion:{
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -53,10 +48,10 @@ Guardia.atributos = {
     tableName: 'guardia',
     doNotSync: true,
     hooks:{
-      //Cambia el estado de la guardia a cerrado una semana antes de su inicio para que no se acepten mas postulaciones
+      //Cambia el estado de la guardia a cerrada un dia antes de su inicio para que no se acepten mas postulaciones
       async beforeCreate(guardia, options){
-        console.log(semana);
-        const fechaResultado = new Date(guardia.fechainicio).getTime() - semana;
+        console.log(dia);
+        const fechaResultado = new Date(guardia.fechainicio).getTime() - dia;
         const delay = fechaResultado - new Date().getTime();
         setTimeout(async (datos)=>{
           await options.model.update({

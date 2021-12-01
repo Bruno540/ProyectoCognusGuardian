@@ -81,7 +81,6 @@ exports.validateGuardia = [
     check('fechainicio').trim().escape().not().isEmpty().withMessage('La fecha no puede estar vacia').bail().isISO8601().toDate().withMessage("El formato de la fecha no es correcto").bail().isAfter(new Date().toString()).withMessage('La fecha no puede ser menor a la fecha actual').bail(),
     check('idservicio').trim().escape().not().isEmpty().withMessage('El id del servicio no puede estar vacio').isNumeric().withMessage("El id del servicio debe ser numerico").bail(),
     check('duracion').trim().escape().not().isEmpty().withMessage('la duracion no puede estar vacia').isFloat({min:1,max:12}).withMessage("La duracion debe ser un numero entre 1 y 12").bail(),
-    check('met_asignacion').trim().escape().not().isEmpty().withMessage('El metodo de asignacion no puede estar vacio').isIn(['LISTA','DIFUSION']).withMessage("El metodo de asignacion debe ser LISTA o DIFUSION").bail(),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty())

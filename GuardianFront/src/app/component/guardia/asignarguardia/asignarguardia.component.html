@@ -79,6 +79,7 @@
     </div>
 
     <div class="col-lg-2 text-center align-self-center" *ngIf="guardia">
+      <button class="btn btn-md btn-success mr-1" *ngIf="guardia && guardia!.estado ==='PENDIENTE'" (click)="publicarGuardia()">Publicar</button>
       <div *ngIf="guardia && guardia!.estado ==='PUBLICADA'" class="btn-group text-center" role="group" aria-label="First group">
         <button class="btn btn-md btn-success mr-1" (click)="open(mymodal)">Agregar</button>
         <button class="btn btn-md btn-danger " (click)="cerrarGuardia()">Cerrar</button>
@@ -115,15 +116,15 @@
           </tr>
           <tr>
             <th scope="col">Estado</th>
-            <td >{{guardia?.estado ?? 'Seleccione una guardia'}} </td>
-          </tr>
-          <tr>
-            <th scope="col">Met. Asig.</th>
-            <td >{{guardia?.met_asignacion ?? 'Seleccione una guardia'}} </td>
+            <td class="{{guardia?.estado}}" >{{guardia?.estado ?? 'Seleccione una guardia'}} </td>
           </tr>
           <tr>
             <th scope="col">Duracion</th>
             <td >{{guardia?.duracion ?? 'Seleccione una guardia'}} hs</td>
+          </tr>
+          <tr>
+            <th scope="col">Acciones</th>
+            <td > <a class="btn btn-primary" href="/component/servicio?idedificio={{guardia.idservicio}}">Ver servicio</a> </td>
           </tr>
         </table>
       </div>

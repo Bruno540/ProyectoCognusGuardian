@@ -225,7 +225,7 @@ async function addEvent(guardiaDescripcion, ubicacion, fechainicio, fechafin, to
       calendarId: 'primary',
       resource: event,
       sendUpdates : 'all'
-    }).then(data=>console.log(data)).catch(async err=>{
+    }).then().catch(async err=>{
       if(err.code===409){
         await calendar.events.update(
           {
