@@ -77,13 +77,13 @@ npm install
         Estas variables de entorno representan la informacion necesaria para la conexion y funcionamiento de twilio.
       ```
     
-    * GuardianFront(Las variables se indican en el archivo (environment.prod.ts, ubicado en /src/environments):
-      ``` 
-      
-        BACKEND_URL:<<BACKEND_URL>>, --> Url donde esta publicada la aplicacion(en un entorno local seria http://localhost:5000)
-        PAYPAL_PLAN_ID:<<PLAN_ID>>, --> Id del Plan de suscripcion de PayPal creado para la aplicacion (Ver configuracion de PayPal)
-        PAYPAL_CLIENT_ID:<<CLIENT_ID>>, --> Client Id de la aplicacion de PayPal correspondiente. Debe ser el mismo que se configuro en el backend(Ver configuracion de PayPal)
-      ```
+  * GuardianFront(Las variables se indican en el archivo (environment.prod.ts, ubicado en /src/environments):
+    ``` 
+
+      BACKEND_URL:<<BACKEND_URL>>, --> Url donde esta publicada la aplicacion(en un entorno local seria http://localhost:5000)
+      PAYPAL_PLAN_ID:<<PLAN_ID>>, --> Id del Plan de suscripcion de PayPal creado para la aplicacion (Ver configuracion de PayPal)
+      PAYPAL_CLIENT_ID:<<CLIENT_ID>>, --> Client Id de la aplicacion de PayPal correspondiente. Debe ser el mismo que se configuro en el backend(Ver configuracion de PayPal)
+    ```
   
 4. Ejecutar ambos proyectos:
   ``` 
