@@ -105,7 +105,6 @@ _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de f
 5. Una vez creada la aplicacion, tendremos acceso a las credenciales requeridas(CLIENT_ID, CLIENT_SECRET), estas son las que deben ser ingresadas en las variables de entorno correspondientes.
 ![image](https://user-images.githubusercontent.com/64421944/144615254-522a5120-3b1c-465e-b896-ba936be48b06.png)
 6. 
-7. 
     * Luego de creada la aplicacion de PayPal tendremos que crear un Webhook, el que se encargara de avisar a nuestra app mediante una peticion http a un endpoint de <ins>nuestra</ins> aplicacion cuando el pago de la suscripcion de una institucion se complete satisfactoriamente, para darla de alta en el sistema. https://developer.paypal.com/docs/api-basics/notifications/webhooks/
     * Debido a que en los Webhook de PayPal solo se le pueden configurar endpoints con el protocolo https(entre otros requerimientos), decidimos usar la herramienta <ins>Ngrok</ins> para redirigir los Webhooks a nuestra aplicacion que esta funcionando de forma local. Esto se hace de la siguiente forma(En nuestro caso usando la consola de PowerShell): 
     * Iniciar la consola en la ubicacion donde se encuentra el archivo de Ngrok descargado:
