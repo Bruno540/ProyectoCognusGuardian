@@ -125,19 +125,19 @@ _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de f
   * Una vez guardado los cambios, la aplicacion esta lista para recibir la informacion desde PayPal.
 
 8. Una vez que tengamos el webhook correctamente configurado, procederemos a crear el plan de suscripcion deseado a usar en la aplicacion.
-  8.1. Para esto tendremos que iniciar sesion en https://www.sandbox.paypal.com/ **con la cuenta sandbox utilizada para la creacion de la aplicacion de PayPal**.
-  8.2. Una vez ahi nos dirigiremos al centro de aplicaciones:
+  * Para esto tendremos que iniciar sesion en https://www.sandbox.paypal.com/ **con la cuenta sandbox utilizada para la creacion de la aplicacion de PayPal**.
+  * Una vez ahi nos dirigiremos al centro de aplicaciones:
     ![image](https://user-images.githubusercontent.com/64421944/144624204-663ce3f0-7dca-47bd-8ed9-2824c3f69766.png)
-  8.3. Seleccionaremos la opcion "Suscripciones":
+  * Seleccionaremos la opcion "Suscripciones":
     ![image](https://user-images.githubusercontent.com/64421944/144624548-4f68b057-0381-43fe-867a-25c51a0db4a6.png)
-  8.4. En la seccion de "Planes de suscripcion" seleccionaremos crear un plan:
+  * En la seccion de "Planes de suscripcion" seleccionaremos crear un plan:
     ![image](https://user-images.githubusercontent.com/64421944/144624724-7a8fe7fe-9a16-46e5-aab2-7907474eeb54.png)
-  8.5. Para crear el plan de suscripcion necesitaremos crear un producto. Luego de completado sus datos seguiremos con la creacion del plan de suscripcion indicando entre otros datos la forma y cantidad que se cobrara a los clientes.(En nuestro caso seleccionamos "Precio fijo" sin periodo de prueba, con cobros mensuales).
+  * Para crear el plan de suscripcion necesitaremos crear un producto. Luego de completado sus datos seguiremos con la creacion del plan de suscripcion indicando entre otros datos la forma y cantidad que se cobrara a los clientes.(En nuestro caso seleccionamos "Precio fijo" sin periodo de prueba, con cobros mensuales).
     ![image](https://user-images.githubusercontent.com/64421944/144626611-b4c4b8e9-ddd7-4c7f-bb37-171ab0a0ecf5.png)
-  8.6. Una vez creado el plan de suscripcion, podremos ver su ID. **Este ID es el que se usara en las variables de entorno de GuardianFront**:
+  * Una vez creado el plan de suscripcion, podremos ver su ID. **Este ID es el que se usara en las variables de entorno de GuardianFront**:
     ![image](https://user-images.githubusercontent.com/64421944/144627304-8c2ff311-1ec9-44c0-848d-5d1fe44ee4d7.png)
  
- 9. Una vez aplicadas correctamente las configuraciones anteriores la aplicacion esta lista para realizar el flujo de PayPal correctamente.
+9. Una vez aplicadas correctamente las configuraciones anteriores la aplicacion esta lista para realizar el flujo de PayPal de forma completa.
 
 
     
