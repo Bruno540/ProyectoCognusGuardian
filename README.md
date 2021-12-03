@@ -101,10 +101,51 @@ _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de f
 1. Crear una cuenta para desarrolladores en PayPal. https://developer.paypal.com/docs/get-started/
 2. Una vez creada la aplicacion nos podremos loguear al dashboard de desarrollador de PayPal.
 3. Dentro del dashboard tendremos que crear una aplicacion nueva en la seccion "My Apps & Credentials".(En caso de ser necesario se debe crear una cuenta Sandbox de PayPal en la seccion "Accounts").
-4. Una vez creada la aplicacion, tendremos acceso a las credenciales requeridas(CLIENT_ID, CLIENT_SECRET), estas son las que deben ser ingresadas en las variables de entorno correspondientes.
+![image](https://user-images.githubusercontent.com/64421944/144615808-d22211d3-5f8c-4267-aa42-b1e95c65b7ba.png)
+5. Una vez creada la aplicacion, tendremos acceso a las credenciales requeridas(CLIENT_ID, CLIENT_SECRET), estas son las que deben ser ingresadas en las variables de entorno correspondientes.
 ![image](https://user-images.githubusercontent.com/64421944/144615254-522a5120-3b1c-465e-b896-ba936be48b06.png)
-
 6. 
+7. 
+  * Luego de creada la aplicacion de PayPal tendremos que crear un Webhook, el que se encargara de avisar a nuestra app mediante una peticion http a un endpoint de <ins>nuestra</ins> aplicacion cuando el pago de la suscripcion de una institucion se complete satisfactoriamente, para darla de alta en el sistema. https://developer.paypal.com/docs/api-basics/notifications/webhooks/
+  * Debido a que en los Webhook de PayPal solo se le pueden configurar endpoints con el protocolo https(entre otros requerimientos), decidimos usar la herramienta <ins>Ngrok</ins> para redirigir los Webhooks a nuestra aplicacion que esta funcionando de forma local. Esto se hace de la siguiente forma(En nuestro caso usando la consola de PowerShell): 
+  * Iniciar la consola en la ubicacion donde se encuentra el archivo de Ngrok descargado:
+    ![image](https://user-images.githubusercontent.com/64421944/144619707-4639436d-20b4-47c2-9969-194c88c5f629.png)
+  * Una vez en la consola ingresar el siguiente comando(Siendo 5000 el puerto donde se encuentra la aplicacion):
+    ```
+      ./ngrok http 5000 
+    ```
+  * Deberia aparecer una pantalla similar a la siguiente:
+    ![image](https://user-images.githubusercontent.com/64421944/144620294-4af291cb-0430-4d0f-b14d-699c69fa1444.png)
+  
+  * El link que vamos a utilizar para el Webhook de PayPal es el que utiliza el protocolo https, como se muestra en la siguiente imagen:
+    ![image](https://user-images.githubusercontent.com/64421944/144620824-4aa49041-43d6-483e-aa8f-a2c411029330.png)
+  
+  * Una vez que tengamos este link volveremos al dashboard de PayPal, a la seccion de Sandbox Webhooks, en la misma pantalla en la que se encuentran las credenciales. Seleccionaremos la opcion "Add webhook" e ingresaremos en el campo "Webhook URL" el link https obtenido **mas la ruta del endpoint que es "/api/payment/authorizepayment", es decir el link deberia quedar de la siguiente manera: "https://7bd9-167-108-249-30.ngrok.io/api/payment/authorizepayment"**.  Luego se debe seleccionar los eventos por los que PayPal nos enviara informacion, en nuestro caso el unico que necesitamos es "Billing subscription activated".
+    ![image](https://user-images.githubusercontent.com/64421944/144622746-9fa701c7-8ec6-4dfb-9aee-173354dcd525.png)
+  * Una vez guardado los cambios, la aplicacion esta lista para recibir la informacion desde PayPal.
+
+8. Una vez que tengamos el webhook correctamente configurado, procederemos a crear el plan de suscripcion deseado a usar en la aplicacion.
+  8.1. Para esto tendremos que iniciar sesion en https://www.sandbox.paypal.com/ **con la cuenta sandbox utilizada para la creacion de la aplicacion de PayPal**.
+  8.2. Una vez ahi nos dirigiremos al centro de aplicaciones:
+    ![image](https://user-images.githubusercontent.com/64421944/144624204-663ce3f0-7dca-47bd-8ed9-2824c3f69766.png)
+  8.3. Seleccionaremos la opcion "Suscripciones":
+    ![image](https://user-images.githubusercontent.com/64421944/144624548-4f68b057-0381-43fe-867a-25c51a0db4a6.png)
+  8.4. En la seccion de "Planes de suscripcion" seleccionaremos crear un plan:
+    ![image](https://user-images.githubusercontent.com/64421944/144624724-7a8fe7fe-9a16-46e5-aab2-7907474eeb54.png)
+  8.5. Para crear el plan de suscripcion necesitaremos crear un producto. Luego de completado sus datos seguiremos con la creacion del plan de suscripcion indicando entre otros datos la forma y cantidad que se cobrara a los clientes.(En nuestro caso seleccionamos "Precio fijo" sin periodo de prueba, con cobros mensuales).
+    ![image](https://user-images.githubusercontent.com/64421944/144626611-b4c4b8e9-ddd7-4c7f-bb37-171ab0a0ecf5.png)
+  8.6. Una vez creado el plan de suscripcion, podremos ver su ID. **Este ID es el que se usara en las variables de entorno de GuardianFront**:
+    ![image](https://user-images.githubusercontent.com/64421944/144627304-8c2ff311-1ec9-44c0-848d-5d1fe44ee4d7.png)
+ 
+ 9. Una vez aplicadas correctamente las configuraciones anteriores la aplicacion esta lista para realizar el flujo de PayPal correctamente.
+
+
+    
+  
+  
+  
+
+  
 
 ### Analice las pruebas end-to-end 🔩
 
