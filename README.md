@@ -94,9 +94,17 @@ npm install
   
 _Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
 
-## Ejecutando las pruebas ⚙️
+## Cofiguracion de PayPal ⚙️
 
-_Explica como ejecutar las pruebas automatizadas para este sistema_
+_Instruccionen para establecer el flujo de trabajo correspondiente a paypal de forma local_
+
+1. Crear una cuenta para desarrolladores en PayPal. https://developer.paypal.com/docs/get-started/
+2. Una vez creada la aplicacion nos podremos loguear al dashboard de desarrollador de PayPal.
+3. Dentro del dashboard tendremos que crear una aplicacion nueva en la seccion "My Apps & Credentials".(En caso de ser necesario se debe crear una cuenta Sandbox de PayPal en la seccion "Accounts").
+4. Una vez creada la aplicacion, tendremos acceso a las credenciales requeridas(CLIENT_ID, CLIENT_SECRET), estas son las que deben ser ingresadas en las variables de entorno correspondientes.
+![image](https://user-images.githubusercontent.com/64421944/144615254-522a5120-3b1c-465e-b896-ba936be48b06.png)
+
+6. 
 
 ### Analice las pruebas end-to-end 🔩
 
