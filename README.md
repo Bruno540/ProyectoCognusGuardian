@@ -33,7 +33,7 @@ npm install
   
   * GuardianRest(se deben establecer las variables de entorno en un archivo .env en la raiz del proyecto:): 
     
-      ...
+      ```
       
         DB_HOST=<DB_HOST> --> Host del servidor de base de datos postgres(en caso de estar en un entorno local es localhost)
         DB_PORT=<DB_PORT> --> Puerto del servidor de base de datos postgres(el puerto por defecto de PostgreSQL es 5432)
@@ -43,29 +43,29 @@ npm install
         DB_SSL=TRUE/FALSE --> Indicacion de si se debe realizar la conexion de base de datos mediante SSL(Para entornos locales deberia ser FALSE)
         
         Estas variables de entorno especifican los datos necesarios para la conexion de la base de datos
-      ...
-      ...
+      ```
+      ```
       
         PAYPAL_CLIENT_ID=<PAYPAL_CLIENT_ID>
         PAYPAL_CLIENT_SECRET=<PAYPAL_CLIENT_SECRET>
         PAYPAL_WEBHOOK_ID=<PAYPAL_WEBHOOK_ID>
         
         Estas variables de entorno representan la informacion necesaria para la conexion con PayPal. https://developer.paypal.com/developer/applications 
-      ...
-      ...
+      ```
+      ```
       
         NOTIFICATIONS=TRUE
         
         Indica si las notificaciones del sistema estan activadas.
-      ...
-      ...
+      ```
+      ```
       
         FRONTEND_URL=<FRONTEND_URL>
         
         Url del Frontend de la aplicacion, en caso de ejecutar el Front de forma local en el puerto por defecto de angular, la url seria: http://localhost:4200
-      ...
+      ```
 
-      ...
+      ```
       
         TWILIO_SENDER_EMAIL=<TWILIO_SENDER_EMAIL> --> Direccion de correo electronico que se utlizara para enviar los correos de notificacion
         TWILIO_SENDER_PASSWORD=<TWILIO_SENDER_PASSWORD> --> Contraseña del correo electronico indicado.
@@ -75,20 +75,20 @@ npm install
         TWILIO_MESSAGING_SERVICE_ID=<TWILIO_MESSAGING_SERVICE_ID> --> Id del servicio de mensajeria de Twilio a utilizar. (SMS)
       
         Estas variables de entorno representan la informacion necesaria para la conexion y funcionamiento de twilio.
-      ...
+      ```
     
     * GuardianFront(Las variables se indican en el archivo (environment.prod.ts, ubicado en /src/environments):
-      ... 
+      ``` 
       
         BACKEND_URL:<<BACKEND_URL>>, --> Url donde esta publicada la aplicacion(en un entorno local seria http://localhost:5000)
         PAYPAL_PLAN_ID:<<PLAN_ID>>, --> Id del Plan de suscripcion de PayPal creado para la aplicacion (Ver configuracion de PayPal)
         PAYPAL_CLIENT_ID:<<CLIENT_ID>>, --> Client Id de la aplicacion de PayPal correspondiente. Debe ser el mismo que se configuro en el backend(Ver configuracion de PayPal)
-      ...
+      ```
   
 4. Ejecutar ambos proyectos:
-  ... 
+  ``` 
     npm start
-  ...
+  ```
   
   
   
