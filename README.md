@@ -6,7 +6,7 @@ Sistema de gestion de guardias asistenciales para instituciones medicas.
 
 _Las siguientes instrucciones permitirán obtener una copia del proyecto en funcionamiento de forma local para propósitos de desarrollo y pruebas._
 
-### Pre-requisitos 📋
+## Pre-requisitos 📋
 
 _Para el funcionamiento de la aplicacion se necesitaran los  siguientes recursos:_
 
@@ -18,7 +18,7 @@ Ngrok - https://ngrok.com/download
 PostgresSQL - https://www.postgresql.org/download/
 ```
 
-### Instalación 🔧
+## Instalación 🔧
 
 _Pasos a seguir para la ejecucion de la aplicacion:_
 
@@ -137,7 +137,7 @@ _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de f
 9. Una vez aplicadas correctamente las configuraciones anteriores la aplicacion esta lista para realizar el flujo de PayPal de forma completa.
 
 
-### Notas importantes 🔩
+## Notas importantes 🔩
 
 1. La cuenta de Gmail para enviar correos con nuestra aplicacion(NODE_SENDER_EMAIL) debe permitir el acceso de aplicaciones poco seguras. https://www.google.com/settings/security/lesssecureapps
 2. La cuenta gratis de **Ngrok** no permite el uso de links fijos, por lo que si se cierra la ventana de Ngrok y se vuelve a abrir el link https generado habra cambiado, por lo que habra que repetir el procedimiento realizado en el paso 6 de la configuracion de PayPal(modificando el webhook anteriormente creado).
@@ -149,4 +149,4 @@ _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de f
 * **Pablo Gaione** - [Pablo](https://github.com/pablogb83)
 
 ---
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
+
