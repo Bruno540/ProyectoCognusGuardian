@@ -67,8 +67,9 @@ npm install
 
         ```
 
-          TWILIO_SENDER_EMAIL=<TWILIO_SENDER_EMAIL> --> Direccion de correo electronico que se utlizara para enviar los correos de notificacion
-          TWILIO_SENDER_PASSWORD=<TWILIO_SENDER_PASSWORD> --> Contraseña del correo electronico indicado.
+          NODE_SENDER_EMAIL=<NODE_SENDER_EMAIL> --> Direccion de correo electronico que se utlizara para enviar los correos de notificacion
+          NODE_SENDER_PASSWORD=<NODE_SENDER_PASSWORD> --> Contraseña del correo electronico indicado.
+          
           TWILIO_ACCOUNT_SID=<TWILIO_ACCOUNT_SID> --> Credencial de la cuenta de Twilio (Se obtiene desde el dashboard de Twilio)
           TWILIO_AUTH_TOKEN=<TWILIO_AUTH_TOKEN> --> Credencial de la cuenta de Twilio (Se obtiene desde el dashboard de Twilio)
           TWILIO_WHATSAPP_PHONE=<TWILIO_WHATSAPP_PHONE> --> Numero de telefono de twilio (correspondiente al sandbox de whatsapp) a utilizar para enviar notificaciones por Whatsapp.
@@ -91,9 +92,6 @@ npm install
   ```
   
   
-  
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
 ## Cofiguracion de PayPal ⚙️
 
 _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de forma local_
@@ -139,74 +137,16 @@ _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de f
 9. Una vez aplicadas correctamente las configuraciones anteriores la aplicacion esta lista para realizar el flujo de PayPal de forma completa.
 
 
-    
-  
-  
-  
+### Notas importantes 🔩
 
-  
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-## Despliegue 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
-
-## Construido con 🛠️
-
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
-
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-## Wiki 📖
-
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+1. La cuenta de Gmail para enviar correos con nuestra aplicacion(NODE_SENDER_EMAIL) debe permitir el acceso de aplicaciones poco seguras. https://www.google.com/settings/security/lesssecureapps
+2. La cuenta gratis de **Ngrok** no permite el uso de links fijos, por lo que si se cierra la ventana de Ngrok y se vuelve a abrir el link https generado habra cambiado, por lo que habra que repetir el procedimiento realizado en el paso 6 de la configuracion de PayPal(modificando el webhook anteriormente creado).
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
-
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
-
-
+* **Bruno Rodriguez** - [Bruno](https://github.com/Bruno540)
+* **German Arena** - [German](https://github.com/gac1989)
+* **Pablo Gaione** - [Pablo](https://github.com/pablogb83)
 
 ---
 ⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
