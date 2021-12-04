@@ -119,8 +119,7 @@ _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de f
 
     * Una vez que tengamos este link volveremos al dashboard de PayPal, a la seccion de Sandbox Webhooks, en la misma pantalla en la que se encuentran las credenciales. Seleccionaremos la opcion "Add webhook" e ingresaremos en el campo "Webhook URL" el link https obtenido **mas la ruta del endpoint que es "/api/payment/authorizepayment", es decir el link deberia quedar de la siguiente manera: "https://7bd9-167-108-249-30.ngrok.io/api/payment/authorizepayment"**.  Luego se debe seleccionar los eventos por los que PayPal nos enviara informacion, en nuestro caso el unico que necesitamos es "Billing subscription activated".
       ![image](https://user-images.githubusercontent.com/64421944/144622746-9fa701c7-8ec6-4dfb-9aee-173354dcd525.png)
-    * Una vez guardado los cambios, la aplicacion esta lista para recibir la informacion desde PayPal.
-
+    * Una vez guardado los cambios, podremos acceder al **ID del webhook, el cual tambien debe configurarse en las variables de entorno del Backend**.
 8. Una vez que tengamos el webhook correctamente configurado, procederemos a crear el plan de suscripcion deseado a usar en la aplicacion.
     * Para esto tendremos que iniciar sesion en https://www.sandbox.paypal.com/ **con la cuenta sandbox utilizada para la creacion de la aplicacion de PayPal**.
     * Una vez ahi nos dirigiremos al centro de aplicaciones:
@@ -136,11 +135,37 @@ _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de f
  
 9. Una vez aplicadas correctamente las configuraciones anteriores la aplicacion esta lista para realizar el flujo de PayPal de forma completa.
 
+## Cofiguracion de Google Cloud ⚙️
+
+1. En la consola de Google Cloud abir el menu lateral seleccionar la opcion "API y Servicios".
+2. En el **panel** seleccionar la opcion "Habilitar API y Servicios".
+3. Seleccionar y habilitar la API de Google Calendar.
+4. Una vez habilitada, habra que configurar la pantalla de consentimiento: 
+   * Se ingresaran datos como nombre de la aplicacion, correos de contacto.
+   * Luego se agregaran los siguientes permisos: 
+      - ./auth/userinfo.email
+      - ./auth/userinfo.profile
+      - openid
+      - ./auth/calendar.app.created
+      - ./auth/cloud-platform
+      - ./auth/calendar.events
+   * Mientras el estado de publicación sea “Prueba”, solo los usuarios de prueba podrán acceder a la app, agregar los usuarios deseados.
+ 5. Una vez configurada la pantalla de consentimiento de la aplicacion se debera crear una nueva credencial de clientes OAuth 2.0;
+   * Seleccionar en el menu lateral la opcion "Credenciales"
+   * Seleccionar la opcion "Crear credenciales" --> "ID del cliente OAuth 2.0"
+   * Seleccionar aplicacion web
+   * Ingresar Origenes autorizados(en este caso en un entorno local el origen seria http://localhost:5000, siendo 5000 el puerto en que se encuentra nustro back)
+   * Ingresar Urls de redireccionamiento autorizados. En esta opcion se agregara la url donde se encuentre el Frontend de la aplicacion, **mas el endpoint component/successcalendarsync**, en un entorno local un ejemplo de url seria el siguiente: http://localhost:4200/component/successcalendarsync.
+6. Una vez creado el cliente de OAuth2 se tendra acceso a sus credenciales.
+7. Descargar las credenciales generadas (archivo JSON) y **copiar su contenido en el archivo "credentials" que se encuentra en el backend de nuestra aplicacion (GuardianRest)**.
 
 ## Notas importantes 🔩
 
 1. La cuenta de Gmail para enviar correos con nuestra aplicacion(NODE_SENDER_EMAIL) debe permitir el acceso de aplicaciones poco seguras. https://www.google.com/settings/security/lesssecureapps
 2. La cuenta gratis de **Ngrok** no permite el uso de links fijos, por lo que si se cierra la ventana de Ngrok y se vuelve a abrir el link https generado habra cambiado, por lo que habra que repetir el procedimiento realizado en el paso 6 de la configuracion de PayPal(modificando el webhook anteriormente creado).
+3. La cuenta **trial** de Twilio.
+4. Para obtener el numero de Whatsapp y el MessagingID de twilio se deben seguir los pasos indicados en la consola de twilio, en la seccion "messaging/Try it out", "Send a sms" y "Send a whatsapp message".
+5. Para que twilio pueda enviar notificaciones los numeros destinatarios deben estar registrados.(Free trial)
 
 ## Autores ✒️
 
