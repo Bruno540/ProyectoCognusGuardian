@@ -44,7 +44,7 @@
                             <td>{{guardia.estado}}</td>
                             <td width="12">
                                 <div class="btn-group" role="group">
-                                    <button class="btn btn-icon btn-success mx-1" *ngIf="guardia.estado=='PUBLICADA'" (click)="asignarMedicosGuardia(guardia.id)" data-toggle="tooltip" data-placement="top" title="Asignar médicos"><i class="bi bi-person-plus-fill"></i></button>
+                                    <!-- <button class="btn btn-icon btn-success mx-1" *ngIf="guardia.estado=='PUBLICADA'" (click)="asignarMedicosGuardia(guardia.id)" data-toggle="tooltip" data-placement="top" title="Asignar médicos"><i class="bi bi-person-plus-fill"></i></button> -->
                                     <button class="btn btn-icon btn-success mx-1" (click)="publicarGuardia(guardia.id)" *ngIf="guardia.estado=='PENDIENTE'" data-toggle="tooltip" data-placement="top" title="Publicar guardia"><i class="bi bi-arrow-up-circle"></i></button>
                                     <button class="btn btn-icon btn-danger" (click)="eliminarGuardia(guardia.id)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="bi bi-trash-fill"></i></button>
                                     <button class="btn btn-icon btn-primary mx-1" (click)="verDetalles(guardia.id)" routerLinkActive="active" data-toggle="tooltip" data-placement="top" title="Ver calendario"><i class="bi bi-calendar-check-fill"></i></button>

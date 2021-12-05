@@ -75,6 +75,15 @@ async function sincronizarCalendario(req,res){
     res.json(await new AccionesMedicoService(req.user.institucion).sincronizarCalendario(req.user));
 }
 
+async function quitarSincronizacionCalendario(req,res){
+    await new AccionesMedicoService(req.user.institucion).quitarSincronizacionCalendario(req.user);
+    res.json({message:"Sincronizacion revocada con exito"});
+}
+
+async function checkIfSyncCalendar(req,res){
+    res.json(await new AccionesMedicoService(req.user.institucion).checkIfSyncCalendar(req.user));
+}
+
 async function confirmarSyncCalendar(req,res){
     const { code, idmedico} = req.body;
     await new AccionesMedicoService(req.user.institucion).confirmarSyncCalendar(code,idmedico);
@@ -110,5 +119,7 @@ module.exports={
     sincronizarCalendario,
     confirmarSyncCalendar,
     passwordChange,
-    obtenerGuardiasCompletadas
+    obtenerGuardiasCompletadas,
+    quitarSincronizacionCalendario,
+    checkIfSyncCalendar
 }

@@ -230,7 +230,7 @@
       </tr>
       </tbody>
     </table>
-    <h3 *ngIf="selectedguardia">{{selectedguardia.title}}</h3>
+    <p class="h4 alert-info" *ngIf="guardia">{{guardia.descripcion}}</p>
     <button type="button" class="btn btn-outline-success me-3" (click)=" modal.close(agregarMedicosGuardia())">Confirmar</button>
     <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">Cancelar</button>
   </div>

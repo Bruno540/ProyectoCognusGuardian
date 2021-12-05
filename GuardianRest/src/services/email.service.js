@@ -69,8 +69,8 @@ async function enviarEmail(email, nombre, password){
     const body = getEmailRegisterBody(nombre,email,password)
     const active = process.env.NOTIFICATIONS;
     if(active==="TRUE"){
-      const senderEmail = process.env.TWILIO_SENDER_EMAIL;
-      const senderPassword = process.env.TWILIO_SENDER_PASSWORD;
+      const senderEmail = process.env.NODE_SENDER_EMAIL;
+      const senderPassword = process.env.NODE_SENDER_PASSWORD;
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -226,6 +226,7 @@ async function addEvent(guardiaDescripcion, ubicacion, fechainicio, fechafin, to
       resource: event,
       sendUpdates : 'all'
     }).then().catch(async err=>{
+      console.log("Error al sincronizar calendario: ", err);
       if(err.code===409){
         await calendar.events.update(
           {

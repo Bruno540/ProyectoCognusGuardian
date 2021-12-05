@@ -77,6 +77,14 @@ export class AccionesMedicoService {
     return this.http.post(AUTH_API + 'sincronizarCalendar',httpOptions);
   }
 
+  quitarSincronizacionCalendario(): Observable<any> {
+    return this.http.post(AUTH_API + 'quitcalendarsync',httpOptions);
+  }
+
+  ckCalendar(): Observable<any> {
+    return this.http.post(AUTH_API + 'ckcalendar',httpOptions);
+  }
+
 
   confirmarSincronizacionCalendario(code:string,idmedico: number): Observable<any> {
     return this.http.post(AUTH_API + 'confirmarSyncCalendar',{

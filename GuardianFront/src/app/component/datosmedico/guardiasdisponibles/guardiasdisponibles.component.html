@@ -107,9 +107,9 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 *ngIf="guardiaseleccionada">
-          Postulación: {{ guardiaseleccionada.descripcion }}
-        </h3>
+        <h4 *ngIf="guardiaseleccionada">
+          {{ guardiaseleccionada.descripcion }}
+        </h4>
       </div>
       <div class="modal-body">
         <h3></h3>
@@ -143,7 +143,7 @@
             </table>
           </div>
           <div class="col" *ngIf="guardiaseleccionada">
-            <table>
+            <table class="table alert alert-info ">
               <tr>
                 <th>Inicio:</th>
                 <td>

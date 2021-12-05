@@ -195,10 +195,7 @@ class GuardiasService {
                         return true;
                     }
                     await this.updatePostulacion(idmedico,idguardia,'PENDIENTE', t);
-                    await this.updateAsignacion(idmedico,idguardia,'CANCELADA', t).then(async ()=>{
-                        const medico = await this.Usuario.findByPk(idmedico);
-                        const fechaGuardia = moment(guardia.fechainicio).format('YYYY-MM-DD HH:mm');
-                    });
+                    await this.updateAsignacion(idmedico,idguardia,'CANCELADA', t);
                     await t.commit();
                 }
                 catch(e){
@@ -363,6 +360,7 @@ class GuardiasService {
     async obtenerMedicosPostulados(idguardia){
         const guardia = await this.getGuardia(idguardia);
         const postulados = await this.GuardiaMedicoPostulacion.findAll({
+            order:[['ponderacion', 'DESC']],
             include:[
                 {
                     model: this.Especialidad

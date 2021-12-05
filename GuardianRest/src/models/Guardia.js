@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 
+const moment = require('moment');
+
 const Guardia = {};
 
 Guardia.atributos = {
@@ -48,20 +50,21 @@ Guardia.atributos = {
     tableName: 'guardia',
     doNotSync: true,
     hooks:{
-      //Cambia el estado de la guardia a cerrada un dia antes de su inicio para que no se acepten mas postulaciones
+      //Cambia el estado de la guardia a cerrada cuando llegue su fecha de inicio
       async beforeCreate(guardia, options){
         console.log(dia);
-        const fechaResultado = new Date(guardia.fechainicio).getTime() - dia;
-        const delay = fechaResultado - new Date().getTime();
-        setTimeout(async (datos)=>{
-          await options.model.update({
-            estado: 'CERRADA'
-          },{
-            where:{
-              id: guardia.id
-            }
-          });
-        }, delay, guardia);
+        const delay = new Date(guardia.fechainicio).getTime() - new Date().getTime(); 
+        if(delay<0){
+          guardia.estado="CERRADA"
+        }
+        else{
+          setTimeout(async (datos)=>{
+            console.log("Voy a cerrar la guardia");
+            await guardia.update({
+              estado: 'CERRADA'
+            });
+          }, delay, guardia);
+        }
       }
     }
   };

@@ -285,7 +285,7 @@ export class AsignarguardiaComponent implements OnInit {
     this.guardiasService.obtenerMedicosPostulados(this.guardia.id).subscribe(data=>{
       if(data){
         this.medicospostulados=data;
-        this.medicospostulados!.sort((a, b) => (a.GuardiaMedicoPostulacion.ponderacion > b.GuardiaMedicoPostulacion.ponderacion ? -1 : 1)); 
+        //this.medicospostulados!.sort((a, b) => (a.GuardiaMedicoPostulacion.ponderacion > b.GuardiaMedicoPostulacion.ponderacion ? -1 : 1)); 
       }
       else{
         this.medicospostulados=[];

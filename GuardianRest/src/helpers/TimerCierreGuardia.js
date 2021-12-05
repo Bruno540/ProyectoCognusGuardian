@@ -1,7 +1,6 @@
-const Guardia = require('../models/Guardia');
 const { Op } = require("sequelize");
 
-async function actualizarTiempos(){
+async function actualizarTiempos(Guardia){
     const guardias = await Guardia.findAll({
         where: {
             [Op.or]:[
@@ -15,20 +14,16 @@ async function actualizarTiempos(){
         }
     });
     for(const guardia of guardias){
-        const fechaResultado = new Date(guardia.fechainicio).getTime() - semana;
-        const delay = fechaResultado - new Date().getTime();
-        if(delay<=0){
-            guardia.estado='CERRADA';
-            guardia.save();
+        const delay = new Date(guardia.fechainicio).getTime() - new Date().getTime(); 
+        if(delay<0){
+            guardia.update({
+                estado: 'CERRADA'
+            });
         }
         else{
             setTimeout(async (datos)=>{
-                await Guardia.update({
+                await guardia.update({
                     estado: 'CERRADA'
-                },{
-                    where:{
-                        id: guardia.id
-                    }
                 });
             }, delay, guardia);
         }

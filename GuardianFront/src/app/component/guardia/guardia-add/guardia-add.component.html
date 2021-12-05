@@ -17,13 +17,13 @@
         </div>
         <br>
         <h4>Servicio seleccionado: </h4><br>
-        <div *ngIf="local==true">
-            <p class="text-decoration-underline">Edificio:</p><p>{{servicio.Local.Edificio.nombre}}</p>
-            <p class="text-decoration-underline">Ubicación:</p><p>{{servicio.Local.Ubicacion.descripcion}}</p>
+        <div *ngIf="local" class="alert alert-info" role="alert">
+            <p class="h4"><u>Edificio:</u></p><hr><p>{{servicio.Local.Edificio.nombre}}</p>
+            <p class="h4"><u>Ubicación:</u> </p><hr><p>{{servicio.Local.Ubicacion.descripcion}}</p>
         </div>
-        <div *ngIf="local==false">
-            <p class="text-decoration-underline">Zona:</p><p>{{servicio.Domicilio.Zona.localidad}}</p>
-            <p class="text-decoration-underline">Departamento:</p><p>{{servicio.Domicilio.Zona.departamento}}</p>
+        <div *ngIf="!local" class="alert alert-info" role="alert">
+            <p class="h4"><u>Zona:</u> </p><hr><p>{{servicio.Domicilio.Zona.localidad}}</p>
+            <p class="h4"><u>Departamento:</u></p><hr><p>{{servicio.Domicilio.Zona.departamento}}</p>
         </div>
         <br> 
         <button class="btn btn-primary">Aceptar</button>

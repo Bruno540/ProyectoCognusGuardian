@@ -371,6 +371,21 @@ class AccionesMedicoService {
         return syncCalendar(user);
     }
   
+    async checkIfSyncCalendar(user){
+        const medico = await this.Medico.findByPk(user.id);
+        return !!await medico.getCalendarToken();
+    }
+
+    async quitarSincronizacionCalendario(user){
+        const medico = await this.Medico.findByPk(user.id);
+        const token = await medico.getCalendarToken();
+        if(!token){
+            throw ApiError.badRequestError("No esta sincronizado con Google Calendar");
+        }
+        token.destroy();
+    }
+  
+
     async confirmarSyncCalendar(code,idmedico){
         const medico = await this.Medico.findByPk(idmedico);
         const isToken = await medico.getCalendarToken();

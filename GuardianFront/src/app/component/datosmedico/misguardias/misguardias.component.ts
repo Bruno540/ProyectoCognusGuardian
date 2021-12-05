@@ -20,23 +20,41 @@ export class MisguardiasComponent implements OnInit {
   page = 1;
   pageSize = 4;
 
+  calendarSync = false;
+
   filter = new FormControl('');
 
   constructor(private accionesMedicoService: AccionesMedicoService, public router: Router, private handleError: HandleErrorsService) {
+    this.getGuardias();
+  }
+
+  getGuardias(){
     this.accionesMedicoService.obtenerGuardias().subscribe(data=>{
       if(data){
         this.guardias=data;
       }
+      this.accionesMedicoService.ckCalendar().subscribe(data=>{
+        this.calendarSync=data;
+      });
     });
   }
 
   ngOnInit(): void {
- 
+    
   }
 
   sincronizarCalendar(){
     this.accionesMedicoService.sincronizarCalendario().subscribe(data=>{
       window.location.href=data;
+    },err=>{  
+      this.handleError.showErrors(err);
+    });
+  }
+
+  quitarSincronizacionCalendar(){
+    this.accionesMedicoService.quitarSincronizacionCalendario().subscribe(data=>{
+      this.getGuardias();
+      this.handleError.showSuccessAlert(data.message);
     },err=>{  
       this.handleError.showErrors(err);
     });

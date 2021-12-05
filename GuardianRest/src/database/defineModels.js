@@ -18,6 +18,7 @@ const AdministrativoDatos = require('../models/Administrativo');
 const EventualidadDatos = require('../models/Eventualidad');
 const CalendarTokenDatos = require('../models/CalendarToken');
 const { getMigrator } = require('./migrator');
+const { actualizarTiempos } = require('../helpers/TimerCierreGuardia');
 require('./pgEnum-fix')
 
 
@@ -128,6 +129,9 @@ async function agregarModelos(sequelize){
     migrations:["CreacionTablas1.js"],
     rerun: "ALLOW",
   });
+
+  actualizarTiempos(Guardia);
+
 }
 
 module.exports={
