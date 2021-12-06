@@ -10,13 +10,11 @@ _Las siguientes instrucciones permitirán obtener una copia del proyecto en func
 
 _Para el funcionamiento de la aplicacion se necesitaran los  siguientes recursos:_
 
-```
-Cuenta de paypal para desarrolladores - https://developer.paypal.com/docs/get-started/
-Cuenta de Google Cloud para sincronizacion con Google Calendar - https://console.cloud.google.com/freetrial/signup/tos
-Cuenta de Twilio para el envio de notificaciones - https://www.twilio.com/try-twilio
-Ngrok - https://ngrok.com/download
-PostgresSQL - https://www.postgresql.org/download/
-```
+* Cuenta de paypal para desarrolladores - https://developer.paypal.com/docs/get-started/
+* Cuenta de Google Cloud para sincronizacion con Google Calendar - https://console.cloud.google.com/freetrial/signup/tos
+* Cuenta de Twilio para el envio de notificaciones - https://www.twilio.com/try-twilio
+* Ngrok - https://ngrok.com/download
+* PostgresSQL - https://www.postgresql.org/download/
 
 ## Instalación 🔧
 
