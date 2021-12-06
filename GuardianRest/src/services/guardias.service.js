@@ -178,7 +178,9 @@ class GuardiasService {
                     if(!guardia){
                         throw ApiError.badRequestError("La guardia no existe");
                     }
-                    const medico = await this.Medico.findByPk(idmedico);
+                    const medico = await this.Medico.findByPk(idmedico,{
+                        include:this.Usuario
+                    });
                     if(!medico){
                         throw ApiError.badRequestError("El medico no existe");
                     }
@@ -190,7 +192,7 @@ class GuardiasService {
                         await this.updatePostulacion(idmedico,idguardia,'CANCELADA',t);
                         await asignado.destroy({transaction : t});
                         const message = `Se lo ha liberado de su asignacion a la guardia: ${guardia.descripcion} del dia ${guardia.fechainicio}`
-                        await enviarNotificacion(message, medico.telefono);
+                        await enviarNotificacion(message, medico.Usuario.telefono);
                         await t.commit();
                         return true;
                     }

@@ -219,7 +219,8 @@ class AccionesMedicoService {
             else{
                 if(postulado && postulado.estado === "CANCELADA"){
                     await postulado.update({
-                        estado: 'PENDIENTE'
+                        estado: 'PENDIENTE',
+                        especialidad: idesp
                     });
                     return
                 }else{

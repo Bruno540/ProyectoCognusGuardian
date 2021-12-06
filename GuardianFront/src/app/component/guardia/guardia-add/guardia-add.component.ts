@@ -61,7 +61,6 @@ export class GuardiaAddComponent implements OnInit {
     if(this.servicio){
       this.guardiasService.agregarGuardia(descripcion, fechainicio, this.servicio.id, duracion).subscribe( data =>{
         this.handleError.showSuccessAlert(data.message)
-        this.form={};
       }, err=>{
         this.handleError.showErrors(err);
       });

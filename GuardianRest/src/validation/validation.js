@@ -84,7 +84,7 @@ exports.validateSignup = [
         }
   }
   ).withMessage('Ya existe ese email en el sistema!'),
-  check('telefono').trim().escape().not().isEmpty().withMessage('El telefono no puede estar vacio!').bail().isLength({min: 3}).withMessage('Se requieren al menos 3 caracteres!').bail().custom(telefono=>phone.test(telefono)).withMessage("El formato del telefono debe ser como el siguiente: 098000111"),
+  check('telefono').trim().escape().not().isEmpty().withMessage('El telefono no puede estar vacio!').bail().isLength({min: 3}).withMessage('Se requieren al menos 3 caracteres!').bail(),
   check('institucion').isAlphanumeric().withMessage('El nombre no puede contener espacios o simbolos, solo letras y numeros').toLowerCase().trim().escape().not().isEmpty().withMessage('Debe ingresar un nombre de institucion!').bail().isLength({min: 3}).withMessage('Minimum 3 characters required!').bail().custom(
     async institucion => {
       const value = await Institucion.findOne({where:{nombre: institucion}});

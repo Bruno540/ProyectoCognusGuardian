@@ -155,8 +155,8 @@ async function getOAuth(token){
 
 
 function authorize(credentials, token) {
-  const {client_secret, client_id, redirect_uri} = credentials.web;
-  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uri);
+  const {client_secret, client_id} = credentials.web;
+  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, process.env.CALENDAR_REDIRECT_URI);
   if(!token){
     return false;
   }
@@ -177,8 +177,8 @@ function getApiCredentials(){
   const content = fs.readFileSync('credentials.json');
   if (!content) return console.log('Error loading client secret file:', err);
   const credentials = JSON.parse(content);
-  const {client_secret, client_id, redirect_uri} = credentials.web;
-  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uri,{
+  const {client_secret, client_id} = credentials.web;
+  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, process.env.CALENDAR_REDIRECT_URI,{
     access_type: 'offline'
   });
   return oAuth2Client;
