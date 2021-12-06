@@ -163,9 +163,10 @@ _Instruccionen para establecer el flujo de trabajo correspondiente a paypal de f
 
 1. La cuenta de Gmail para enviar correos con nuestra aplicacion(NODE_SENDER_EMAIL) debe permitir el acceso de aplicaciones poco seguras. https://www.google.com/settings/security/lesssecureapps
 2. La cuenta gratis de **Ngrok** no permite el uso de links fijos, por lo que si se cierra la ventana de Ngrok y se vuelve a abrir el link https generado habra cambiado, por lo que habra que repetir el procedimiento realizado en el paso 6 de la configuracion de PayPal(modificando el webhook anteriormente creado).
-3. La cuenta **trial** de Twilio.
+3. La credencial "Auth token" de **Twilio** puede cambiar en el tiempo.
 4. Para obtener el numero de Whatsapp y el MessagingID de twilio se deben seguir los pasos indicados en la consola de twilio, en la seccion "messaging/Try it out", "Send a sms" y "Send a whatsapp message".
-5. Para que twilio pueda enviar notificaciones los numeros destinatarios deben estar registrados.(Free trial)
+5. Para que twilio pueda enviar notificaciones los numeros destinatarios deben estar registrados.(Free trial).
+6. El proceso de registro luego de la suscripcion de PayPal puede tardar unos minutos.
 
 ## Autores ✒️
 
