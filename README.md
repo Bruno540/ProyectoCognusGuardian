@@ -84,7 +84,9 @@ npm install
         PAYPAL_CLIENT_ID:<<CLIENT_ID>>, --> Client Id de la aplicacion de PayPal correspondiente. Debe ser el mismo que se configuro en el backend(Ver configuracion de PayPal)
       ```
 
-4. Ejecutar ambos proyectos:
+4. Crear la base de datos indicada en las variables de entorno.
+
+5. Ejecutar ambos proyectos:
   ``` 
     npm start
   ```
