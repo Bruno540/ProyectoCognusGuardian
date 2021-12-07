@@ -1,6 +1,6 @@
 # Proyecto Guardian
 
-Sistema de gestión de guardias asistenciales para instituciones medicas.
+Sistema de gestión de guardias asistenciales para instituciones médicas.
 
 ## Comenzando 🚀
 
@@ -65,15 +65,15 @@ npm install
 
         ```
 
-          NODE_SENDER_EMAIL=<NODE_SENDER_EMAIL> --> Dirección de correo electronico que se utlizará para enviar los correos de notificacion
-          NODE_SENDER_PASSWORD=<NODE_SENDER_PASSWORD> --> Contraseña del correo electronico indicado.
+          NODE_SENDER_EMAIL=<NODE_SENDER_EMAIL> --> Dirección de correo electronico que se utlizará para enviar los correos de notificación
+          NODE_SENDER_PASSWORD=<NODE_SENDER_PASSWORD> --> Contraseña del correo electrónico indicado.
           
           TWILIO_ACCOUNT_SID=<TWILIO_ACCOUNT_SID> --> Credencial de la cuenta de Twilio (Se obtiene desde el dashboard de Twilio)
           TWILIO_AUTH_TOKEN=<TWILIO_AUTH_TOKEN> --> Credencial de la cuenta de Twilio (Se obtiene desde el dashboard de Twilio)
-          TWILIO_WHATSAPP_PHONE=<TWILIO_WHATSAPP_PHONE> --> Numero de telefono de twilio (correspondiente al sandbox de whatsapp) a utilizar para enviar notificaciones por Whatsapp.
+          TWILIO_WHATSAPP_PHONE=<TWILIO_WHATSAPP_PHONE> --> Número de teléfono de twilio (correspondiente al sandbox de whatsapp) a utilizar para enviar notificaciones por Whatsapp. Sin espacios
           TWILIO_MESSAGING_SERVICE_ID=<TWILIO_MESSAGING_SERVICE_ID> --> Id del servicio de mensajeria de Twilio a utilizar. (SMS)
 
-          Estas variables de entorno representan la informacion necesaria para la conexión y funcionamiento de twilio.
+          Estas variables de entorno representan la información necesaria para la conexión y funcionamiento de twilio.
         ```
 
     * GuardianFront(Las variables se indican en el archivo (environment.prod.ts, ubicado en /src/environments):
@@ -118,7 +118,7 @@ _Instrucciones para establecer el flujo de trabajo correspondiente a PayPal de f
     * El link que vamos a utilizar para el Webhook de PayPal es el que utiliza el protocolo https, como se muestra en la siguiente imagen:
       ![image](https://user-images.githubusercontent.com/64421944/144620824-4aa49041-43d6-483e-aa8f-a2c411029330.png)
 
-    * Una vez que tengamos este link volveremos al dashboard de PayPal, a la sección de Sandbox Webhooks, en la misma pantalla en la que se encuentran las credenciales. Seleccionaremos la opción "Add webhook" e ingresaremos en el campo "Webhook URL" el link https obtenido **mas la ruta del endpoint que es "/api/payment/authorizepayment", es decir el link debería quedar de la siguiente manera: "https://7bd9-167-108-249-30.ngrok.io/api/payment/authorizepayment"**.  Luego se debe seleccionar los eventos por los que PayPal nos enviara información, en nuestro caso el único que necesitamos es "Billing subscription activated".
+    * Una vez que tengamos este link volveremos al dashboard de PayPal, a la sección de Sandbox Webhooks, en la misma pantalla en la que se encuentran las credenciales. Seleccionaremos la opción "Add webhook" e ingresaremos en el campo "Webhook URL" el link https obtenido **mas la ruta del endpoint que es "/api/payment/authorizepayment", es decir el link debería quedar de la siguiente manera: "https://7bd9-167-108-249-30.ngrok.io/api/payment/authorizepayment"**.  Luego se debe seleccionar los eventos por los que PayPal nos enviará información, en nuestro caso el único que necesitamos es "Billing subscription activated".
       ![image](https://user-images.githubusercontent.com/64421944/144622746-9fa701c7-8ec6-4dfb-9aee-173354dcd525.png)
     * Una vez guardado los cambios, podremos acceder al **ID del webhook, el cual también debe configurarse en las variables de entorno del Backend**.
 8. Una vez que tengamos el webhook correctamente configurado, procederemos a crear el plan de suscripción deseado a usar en la aplicación.
