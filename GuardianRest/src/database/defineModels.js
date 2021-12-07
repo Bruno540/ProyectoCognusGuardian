@@ -60,6 +60,7 @@ async function agregarModelos(sequelize){
 
   //Relaciones de Especialidad
   Especialidad.hasMany(GuardiaMedicoPostulacion, {foreignKey: 'especialidad'});
+  Especialidad.hasMany(GuardiaMedico, {foreignKey: 'especialidad'});
   Especialidad.belongsToMany(Servicio,  { through: EspecialidadServicio, foreignKey: 'idespecialidad'});
   Especialidad.belongsToMany(Medico,  { through: EspecialidadMedico, foreignKey: 'idespecialidad'});
   Especialidad.hasMany(Eventualidad,{foreignKey:'idespecialidad'});
@@ -67,6 +68,10 @@ async function agregarModelos(sequelize){
   //Relaciones de GuardiaMedicoPostulacion
   GuardiaMedicoPostulacion.belongsTo(Especialidad, {foreignKey: 'especialidad'});
   GuardiaMedicoPostulacion.belongsTo(Medico, {foreignKey: 'idmedico'});
+
+  //Relaciones de GuardiaMedico
+  GuardiaMedico.belongsTo(Especialidad, {foreignKey: 'especialidad'});
+  GuardiaMedico.belongsTo(Medico, {foreignKey: 'idmedico'});
 
   //Relaciones de Medico
   Medico.hasMany(GuardiaMedicoPostulacion, {foreignKey: 'idmedico'});

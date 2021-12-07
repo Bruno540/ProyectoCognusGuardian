@@ -209,34 +209,22 @@ class GuardiasService {
     }
 
     async obtenerMedicosAsignados(idguardia){
-        const guardia = await this.Guardia.findOne({
-            include:{
-                required: false,
-                through:{
-                    model: this.GuardiaMedico,
+        const guardia = await this.getGuardia(idguardia);
+        return await this.GuardiaMedico.findAll({
+            include:[
+                {
+                    model: this.Especialidad
                 },
-                model: this.Medico,
-                as: 'Asignacion',
-                include: this.Usuario,
-                where:{
-                    [Op.or]:[
-                        {
-                            '$Asignacion.GuardiaMedico.estado$':'ASIGNADA'
-                        },
-                        {
-                            '$Asignacion.GuardiaMedico.estado$':'LIBERACION'
-                        }
-                    ]
+                {
+                    model: this.Medico,
+                    include: this.Usuario
                 }
-            },
+            ],
             where:{
-                id: idguardia
+                idguardia,
+                estado:["ASIGNADA","LIBERACION"]
             }
         });
-        if(!guardia){
-            throw ApiError.badRequestError("La guardia no existe");
-        }
-        return guardia.Asignacion || [];
     }
 
     async getGuardiaFullData(idguardia){

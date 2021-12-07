@@ -9,8 +9,8 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCalendario">
               Calendario <i class="bi bi-journal-medical"></i>
             </button>
-            <button *ngIf="!calendarSync" class="btn btn-success ml-2" (click)="sincronizarCalendar()">Sincronizar Google Calendar</button>
-            <button *ngIf="calendarSync" class="btn btn-danger ml-2" (click)="quitarSincronizacionCalendar()">Cancelar sincronizacion con Google Calendar</button>
+            <button *ngIf="!calendarSync" class="btn btn-success" (click)="sincronizarCalendar()">Sincronizar Google Calendar</button>
+            <button *ngIf="calendarSync" class="btn btn-danger" (click)="quitarSincronizacionCalendar()">Cancelar sincronizacion con Google Calendar</button>
           </div>
           <div class="col-3">
             <form>

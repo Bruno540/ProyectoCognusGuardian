@@ -100,7 +100,7 @@
           </tr>
           <tr>
             <th scope="col">Ubicacion</th>
-            <td >{{servicio?.Domicilio?.Zona?.localidad ?? servicio?.Local?.Ubicacion?.descripcion ?? 'Seleccione una guardia'}} </td>
+            <td >{{servicio?.Domicilio?.Zona?.localidad ?? servicio?.Local?.Ubicacion?.descripcion + ' - ' + servicio?.Local?.Edificio?.nombre  ?? 'Seleccione una guardia'}} </td>
           </tr>
           <tr>
             <th scope="col">Guardia</th>
@@ -197,13 +197,15 @@
         <thead class="table-primary">
         <tr>
           <th scope="col">Médicos asignados</th>
+          <th scope="col">Especialidad</th>
           <th scope="col">Acciones</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let medico of medicosasignados">
-          <td>{{medico.Usuario.nombre}}&nbsp;{{medico.Usuario.apellido}} </td>
-          <td><button *ngIf="guardia && guardia.estado !='CERRADA'" class="btn btn-outline-danger align-self-end" (click)="quitarAsignMedico(medico.id)"><i class="bi bi-person-dash-fill"></i></button><button class="btn btn-warning ml-1" *ngIf="medico.GuardiaMedico.estado==='LIBERACION'" data-toggle="tooltip" data-placement="top" title="Se ha solicitado la liberacion de la guardia"><i  class="bi bi-bell"></i></button></td>
+        <tr *ngFor="let asignacion of medicosasignados">
+          <td>{{asignacion.Medico.Usuario.nombre}}&nbsp;{{asignacion.Medico.Usuario.apellido}}</td>
+          <td>{{asignacion.Especialidad.nombre}}</td>
+          <td><button *ngIf="guardia && guardia.estado !='CERRADA'" class="btn btn-outline-danger align-self-end" (click)="quitarAsignMedico(asignacion.Medico.id)"><i class="bi bi-person-dash-fill"></i></button><button class="btn btn-warning ml-1" *ngIf="asignacion.estado==='LIBERACION'" data-toggle="tooltip" data-placement="top" title="Se ha solicitado la liberacion de la guardia"><i  class="bi bi-bell"></i></button></td>
         </tr>
         </tbody>
       </table>
@@ -230,7 +232,7 @@
       </tr>
       </tbody>
     </table>
-    <p class="h4 alert-info" *ngIf="guardia">{{guardia.descripcion}}</p>
+    <hr>
     <button type="button" class="btn btn-outline-success me-3" (click)=" modal.close(agregarMedicosGuardia())">Confirmar</button>
     <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">Cancelar</button>
   </div>

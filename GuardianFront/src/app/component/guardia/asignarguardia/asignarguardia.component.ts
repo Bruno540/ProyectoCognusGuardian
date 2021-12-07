@@ -280,12 +280,12 @@ export class AsignarguardiaComponent implements OnInit {
 
   actualizarMedicos(): void{
     this.guardiasService.obtenerMedicosAsignados(this.guardia.id).subscribe(data2=>{
+      console.log(data2);
       this.medicosasignados=data2;
     });
     this.guardiasService.obtenerMedicosPostulados(this.guardia.id).subscribe(data=>{
       if(data){
         this.medicospostulados=data;
-        //this.medicospostulados!.sort((a, b) => (a.GuardiaMedicoPostulacion.ponderacion > b.GuardiaMedicoPostulacion.ponderacion ? -1 : 1)); 
       }
       else{
         this.medicospostulados=[];

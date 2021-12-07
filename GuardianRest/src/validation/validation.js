@@ -61,7 +61,7 @@ exports.validateGuardia = [
     check('descripcion').trim().escape().not().isEmpty().withMessage('La descripcion no puede estar vacia').bail().isLength({min: 3}).withMessage('Minimum 3 characters required!').bail(),
     check('fechainicio').trim().escape().not().isEmpty().withMessage('La fecha no puede estar vacia').bail().isISO8601().toDate().withMessage("El formato de la fecha no es correcto").bail().isAfter(new Date().toString()).withMessage('La fecha no puede ser menor a la fecha actual').bail(),
     check('idservicio').trim().escape().not().isEmpty().withMessage('El id del servicio no puede estar vacio').isNumeric().withMessage("El id del servicio debe ser numerico").bail(),
-    check('duracion').trim().escape().not().isEmpty().withMessage('la duracion no puede estar vacia').isFloat({min:1,max:12}).withMessage("La duracion debe ser un numero entre 1 y 12").bail(),
+    check('duracion').trim().escape().not().isEmpty().withMessage('la duracion no puede estar vacia').isInt({min:1,max:12}).withMessage("La duracion debe ser un numero entre 1 y 12").bail(),
     responseErrors
 ];
 
