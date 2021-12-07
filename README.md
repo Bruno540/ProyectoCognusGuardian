@@ -83,10 +83,11 @@ npm install
         PAYPAL_PLAN_ID:<<PLAN_ID>>, --> Id del Plan de suscripcion de PayPal creado para la aplicacion (Ver configuracion de PayPal)
         PAYPAL_CLIENT_ID:<<CLIENT_ID>>, --> Client Id de la aplicacion de PayPal correspondiente. Debe ser el mismo que se configuro en el backend(Ver configuracion de PayPal)
       ```
+4. Copiar las credenciales de Google Cloud en el archivo "credentials.json" en el backend de la aplicacion(GuardianRest).Ver configuracion de Google Cloud.
 
-4. Crear la base de datos indicada en las variables de entorno.(La base de datos debe contar un schema "public").
+5. Crear la base de datos indicada en las variables de entorno.(La base de datos debe contar un schema "public").
 
-5. Ejecutar ambos proyectos:
+6. Ejecutar ambos proyectos:
   ``` 
     npm start
   ```
