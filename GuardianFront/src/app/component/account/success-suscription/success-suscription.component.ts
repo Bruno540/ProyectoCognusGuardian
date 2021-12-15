@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PagosService } from 'src/app/services/pagos.service';
 
 @Component({
@@ -8,12 +9,15 @@ import { PagosService } from 'src/app/services/pagos.service';
 })
 export class SuccessSuscriptionComponent implements OnInit {
 
-  constructor(private pagosService: PagosService) { }
+  constructor(private pagosService: PagosService,  public router: Router) { }
 
   suscription?: any;
 
   ngOnInit(): void {
     this.suscription = this.pagosService.getRegisteredSuscription();
+    if(!this.suscription){
+      this.router.navigate(['/component/error']);
+    }
   }
 
 }

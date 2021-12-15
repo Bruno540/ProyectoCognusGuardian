@@ -23,6 +23,7 @@ export class AltaMasivaComponent implements OnInit {
   okmessage='';
   enabled?: boolean = false;
   ruta?: string;
+  archivoNombre?: string;
 
   fileInfos?: Observable<any>;
 
@@ -34,6 +35,7 @@ export class AltaMasivaComponent implements OnInit {
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
+    this.archivoNombre = event.target.files[0].name;
   }
 
   upload(): void {

@@ -18,7 +18,7 @@ export const Approutes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'component/card',
+        redirectTo: 'component/home',
         pathMatch: 'full'
       }
     ]

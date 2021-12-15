@@ -85,7 +85,11 @@ async function enviarEmail(email, nombre, password){
             html: body
         };
         transporter.sendMail(mailOptions, (err, data)=>{
+          if(err){
+            console.log("Error al enviar el email");
+          }else{
             console.log("Email enviado");
+          }
         });
     }
 }
@@ -109,7 +113,11 @@ async function enviarEmailSimple(email, message){
           text: message
       };
       transporter.sendMail(mailOptions, (err, data)=>{
+        if(err){
+          console.log("Error al enviar el email");
+        }else{
           console.log("Email enviado");
+        }
       });
   }
 }

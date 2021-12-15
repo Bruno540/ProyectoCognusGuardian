@@ -230,6 +230,10 @@ class CsvService {
                 if(!fields){
                     return cb(null, false, `Los datos estan incompletos`);
                 }
+                const esp = await this.Especialidad.findOne({where:{nombre: data.nombre}});
+                if(esp){
+                    return cb(null, false, `La especialidad ${esp.nombre} ya existe`);
+                }
                 return cb(null, true);
             })
             .on('error', error => {

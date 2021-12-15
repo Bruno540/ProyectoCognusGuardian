@@ -16,6 +16,14 @@ class EspecialidadesService {
     }
 
     async agregarEspecialidad(datos){
+        const esp = await this.Especialidad.findOne({
+            where:{
+                nombre: datos.nombre
+            }
+        });
+        if(esp){
+            throw ApiError.badRequestError("La especialidad ingresada ya ha sido registrada");
+        }
         return !!this.Especialidad.create(datos);
     }
 
