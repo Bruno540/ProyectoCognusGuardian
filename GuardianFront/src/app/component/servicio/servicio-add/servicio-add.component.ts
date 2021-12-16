@@ -71,6 +71,8 @@ export class ServicioAddComponent implements OnInit {
   }
 
   onClick(): void{
+    this.ubicaciones = [];
+    this.ubicacion.nativeElement.value=null;
     this.edificiosService.obtenerUbicacionesDisponibleEdificio(this.form.idedificio).subscribe(data=>{
       this.ubicaciones=data;
     });

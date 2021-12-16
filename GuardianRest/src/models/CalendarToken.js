@@ -20,7 +20,8 @@ CalendarToken.atributos = {
       type: Sequelize.BIGINT
     },
     idmedico:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'medico', key: 'id' }
     }
 }
 

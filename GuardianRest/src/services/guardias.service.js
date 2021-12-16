@@ -306,7 +306,7 @@ class GuardiasService {
                     const message = `Ha sido asignado a la guardia: ${guardia.descripcion} del dia ${fechaGuardia} en la ubicacion: ${ubicacion}`;
                     for(const medico of medicos){
                         const user = await medico.getUsuario();
-                        await enviarNotificacion(message, user.telefono);
+                        enviarNotificacion(message, user.telefono);
                         const token = await medico.getCalendarToken({
                             attributes:{
                                 exclude:['idmedico']
@@ -314,7 +314,7 @@ class GuardiasService {
                             raw: true
                         });
                         if(token){
-                            await addEvent(guardia.descripcion,ubicacion,guardia.fechainicio,guardia.fechafin,token,guardia.id);
+                            addEvent(guardia.descripcion,ubicacion,guardia.fechainicio,guardia.fechafin,token,guardia.id);
                         }                
                     }
                     await t.commit();
