@@ -424,7 +424,7 @@ class ServiciosService {
             });
         }
         else{
-            throw ApiError.badRequestError("El servicio no se puede eliminar"); 
+            throw ApiError.badRequestError("El servicio ya tiene guardias creadas"); 
         }
     }
 }

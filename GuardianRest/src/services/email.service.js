@@ -175,6 +175,7 @@ function authorize(credentials, token) {
 function getAccessToken(oAuth2Client,user) {
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
+    prompt:'consent',
     scope: SCOPES,
     state:user.id
   });
