@@ -86,6 +86,9 @@ class MedicosService {
                     model: this.Usuario
                 },
                 {
+                    model: this.Zona
+                },
+                {
                     through: {
                         model: this.EspecialidadMedico
                     },

@@ -204,7 +204,6 @@ class ServiciosService {
         return servicio;
     }
 
-    //ESTO NO EXISTE????
     async actualizarServicioLocal(id, datosServicio,  datosServicioLocal){
         const serviciolocal = await this.getServicioLocal(id);
         await serviciolocal.update({
@@ -257,6 +256,7 @@ class ServiciosService {
     async servicioLocalPaginacion(size,page){
         let offset = (size)*(page-1);
         return await this.ServicioLocal.findAndCountAll({
+            order:[['id', 'ASC']],
             attributes: ['id', 'idubicacion'],
             limit: size,
             offset: offset,
@@ -284,6 +284,7 @@ class ServiciosService {
     async servicioDomicilioPaginacion(size, page){
         let offset = (size)*(page-1);
         return await this.ServicioDomicilio.findAndCountAll({
+            order:[['id', 'ASC']],
             attributes: ['id', 'idzona'],
             limit: size,
             offset: offset,
